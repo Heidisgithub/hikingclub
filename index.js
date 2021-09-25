@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5000
 
 const newsRouter = require('./controllers/api/newsRouter');
 const hikersRouter = require('./controllers/api/hikersRouter');
-const loginRouter = require('./controllers/api/newsRouter');
-const hikesRouter = require('./controllers/api/hikersRouter');
+const loginRouter = require('./controllers/api/loginRouter');
+const hikesRouter = require('./controllers/api/hikesRouter');
 
 express()
     .use(express.json())

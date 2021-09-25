@@ -1,5 +1,5 @@
 const express = require('express');
-loginRouter = express.Router();
+const loginRouter = express.Router();
 
 
 loginRouter.get('/', (req, res) => {
