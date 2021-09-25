@@ -1,7 +1,7 @@
 const express = require('express');
 const { seedHikers } = require('../../utils/helper')
 const { getHikers } = require('../../models/dataService')
-hikersRouter = express.Router();
+const hikersRouter = express.Router();
 
 seedHikers()
 

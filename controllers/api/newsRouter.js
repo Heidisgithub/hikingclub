@@ -1,7 +1,7 @@
 const express = require('express');
 const { seedNews } = require('../../utils/helper')
 const { getNews } = require('../../models/dataService')
-newsRouter = express.Router();
+const newsRouter = express.Router();
 
 seedNews()
 
