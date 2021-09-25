@@ -1,6 +1,6 @@
 const express = require('express');
-const { seedHikes } = require('../utils/helper')
-const { getHikes } = require('../models/dataService')
+const { seedHikes } = require('../../utils/helper')
+const { getHikes } = require('../../models/dataService')
 hikeRouter = express.Router();
 
 seedHikes()
