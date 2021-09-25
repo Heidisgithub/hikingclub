@@ -39,4 +39,4 @@ const seedData = () => {
     seedNews()
 }
 
-module.exports = { seedData }
+module.exports = { seedHikers, seedHikes, seedNews, seedData }

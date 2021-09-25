@@ -2,12 +2,16 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-const hikesRouter = require('./controllers/hikeController')
-const loginRouter = require('./controllers/loginController')
+const newsRouter = require('./controllers/api/newsRouter');
+const hikersRouter = require('./controllers/api/hikersRouter');
+const loginRouter = require('./controllers/api/newsRouter');
+const hikesRouter = require('./controllers/api/hikersRouter');
 
 express()
     .use(express.json())
     .use(express.static(path.join(__dirname, 'public')))
+    .use('/api/news', newsRouter)
+    .use('/api/hikers', hikersRouter)
     .use('/api/hikes/', hikesRouter)
     .use('/login/', loginRouter)
     .set('views', path.join(__dirname, 'views'))
