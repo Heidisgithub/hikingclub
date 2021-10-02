@@ -1,10 +1,13 @@
+const { v4: uuidv4 } = require('uuid');
+
 module.exports = class HikeEntity {
     constructor(title, location) {
         this._title = title;
         this._location = location;
         this._registeredHikers = [];
         this._possibleHazards = [];
-        this._description = "No description available"
+        this._description = "No description available";
+        this._id = uuidv4();
     }
     set distance(distance) {
         this._distance = distance
