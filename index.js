@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const cors = require('cors');
 const PORT = process.env.PORT || 5000
 
 const newsRouter = require('./controllers/api/newsRouter');
@@ -10,6 +11,7 @@ const hikesRouter = require('./controllers/api/hikesRouter');
 
 express()
     .use(express.json())
+    .use(cors())
     .use(express.static(path.join(__dirname, 'public')))
     .use('/api/news', newsRouter)
     .use('/api/hikers', hikersRouter)
