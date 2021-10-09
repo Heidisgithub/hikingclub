@@ -1,6 +1,8 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
+const {dbAddHike, dbGetHikes} = require('./db')
+
 
 const hikes = []
 const hikers = []
@@ -47,14 +49,18 @@ const createHike = (hikeData) => {
     return new HikeEntity(hikeData.title, hikeData.location)
 }
 
+
 const addHike = (hike) => {
+    dbAddHike(hike)
     hikes.push(hike)
 }
 
-const getHikes = () => {
-    return hikes.map(hike => {
-        return makePublicHike(hike)
-    })
+const getHikes = async () => {
+    const hikes=await dbGetHikes()
+    return hikes
+    // //return hikes.map(hike => {
+    //     return makePublicHike(hike)
+    // })
 }
 
 const getHikesById = (hikeId) => {

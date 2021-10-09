@@ -3,10 +3,10 @@ const { seedHikes } = require('../../utils/helper')
 const { deleteHike, getHikesIndex, addHike, createHike, makePublicHike, getHikesById, getHikes } = require('../../models/dataService')
 const hikesRouter = express.Router();
 
-seedHikes()
+//seedHikes()
 
-hikesRouter.get('/', (req, res) => {
-    res.send(getHikes())
+hikesRouter.get('/', async (req, res) => {
+    res.send(await getHikes())
 })
 
 hikesRouter.get('/:id', (req, res) => {
