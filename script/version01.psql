@@ -2,6 +2,7 @@ CREATE TABLE hikes (
    id serial PRIMARY KEY,
    title VARCHAR (255) NOT NULL,
    description TEXT,
-   location TEXT
+   location TEXT,
+   uuid VARCHAR(255) NOT NULL
 );
 

@@ -18,32 +18,34 @@ if (process.env.DATABASE_URL) {
         ssl: { rejectUnauthorized: false }
     })
 } else {
-    
+
     db = pgp({
         connectionString: local_uri,
         ssl: { rejectUnauthorized: false }
-    })}
+    })
+}
 
 async function dbAddHike(hike) {
     console.log(hike)
     const newHike = {
-        title:  hike._title,
+        title: hike._title,
         description: hike._description,
-        location: hike._location 
+        location: hike._location,
+        uuid: hike._id
     }
 
     const result = await db.query('INSERT INTO hikes(${this:name}) VALUES(${this:csv})', newHike)
     return newHike;
 }
 
-async function dbGetHikes(){
-    const hikes = await db.query('SELECT ${columns:name} FROM ${table:name}', {
-        columns: ['id', 'title', 'description'],
-        table: 'hikes'
-    });
+async function dbGetHikes() {
+    const hikes = await db.query(`
+    SELECT uuid id, title, description, location
+    FROM hikes
+    `);
     console.log(hikes)
     return hikes
-} 
+}
 
 
 module.exports = {
