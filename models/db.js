@@ -4,6 +4,8 @@ const password = process.env.DB_PASS
 const host = process.env.DB_HOST
 const port = process.env.DB_PORT
 const database = process.env.DB_DATABASE
+const HikeEntity = require('./hikeEntity')
+const HikerEntity = require('./hikerEntity')
 
 const local_uri = `postgres://${username}:${password}@${host}:${port}/${database}`
 const uri = process.env.DATABASE_URL
@@ -25,30 +27,58 @@ if (process.env.DATABASE_URL) {
     })
 }
 
-async function dbAddHike(hike) {
-    console.log(hike)
-    const newHike = {
-        title: hike._title,
-        description: hike._description,
-        location: hike._location,
-        uuid: hike._id
-    }
+function _convertToHikeEntity(hikerRec) {
+    const newHike =  new HikeEntity()
+    // TODO - Add other keys if we update our MVP keys for the hike entity
+    newHike.title = hikerRec.title
+    newHike.description = hikerRec.description
+    newHike.location = hikerRec.location
+    newHike.uuid = hikerRec.uuid
+    newHike.date = hikerRec.date
+    newHike.imageUrl = hikerRec.image_url
+    return newHike
+}
 
-    const result = await db.query('INSERT INTO hikes(${this:name}) VALUES(${this:csv})', newHike)
-    return newHike;
+function _convertFromHikeEntity(hikeEntity) {
+    // TODO - Add other keys if we update our MVP keys for the hike entity
+    const newRec = {}
+    newRec.title = hikeEntity.title
+    newRec.description = hikeEntity.description
+    newRec.location = hikeEntity.location
+    newRec.uuid = hikeEntity.uuid
+    newRec.date = hikeEntity.date
+    newRec.image_url = hikeEntity.imageUrl
+    return newRec
+}
+
+async function dbGetOneHike(uuid) {
+    const hike = await db.one("SELECT * FROM hikes WHERE uuid = $1;", [uuid]);
+    return _convertToHikeEntity(hike)
+}
+
+async function dbAddHike(hikeEntity) {
+    const newHike = _convertFromHikeEntity(hikeEntity)
+    await db.one('INSERT INTO hikes(${this:name}) VALUES(${this:csv}) RETURNING uuid', newHike)
+    return dbGetOneHike(newHike.uuid);
 }
 
 async function dbGetHikes() {
     const hikes = await db.query(`
-    SELECT uuid id, title, description, location
+    SELECT *
     FROM hikes
     `);
-    console.log(hikes)
-    return hikes
+    return hikes.map(hike => _convertToHikeEntity(hike))
+}
+
+async function dbDeleteHike(uuid) {
+    await db.query("DELETE FROM hikes WHERE uuid = $1", [uuid]);
+    return true;
 }
 
 
 module.exports = {
     dbAddHike,
-    dbGetHikes
+    dbGetHikes,
+    dbGetOneHike,
+    dbDeleteHike
 }

@@ -1,7 +1,7 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
-const {dbAddHike, dbGetHikes} = require('./db')
+const {dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike} = require('./db')
 
 
 const hikes = []
@@ -18,7 +18,7 @@ const makePublicHiker = (internalHiker) => {
         firstName: internalHiker._firstName,
         lastName: internalHiker._lastName,
         email: internalHiker._email,
-        id: internalHiker._id
+        uuid: internalHiker._uuid
     }
 }
 
@@ -33,11 +33,11 @@ const getHikers = () => {
 }
 
 const getHikersById = (hikerId) => {
-    return hikers.find(hiker => hiker._id === hikerId)
+    return hikers.find(hiker => hiker._uuid === hikerId)
 }
 
 const getHikersIndex = (hikerId) => {
-    return hikers.findIndex(hiker => hiker.id === hikerId)
+    return hikers.findIndex(hiker => hiker.uuid === hikerId)
 }
 
 const deleteHiker = (hikerIndex) => {
@@ -46,17 +46,22 @@ const deleteHiker = (hikerIndex) => {
 
 //Hikes functions
 const createHike = (hikeData) => {
-    return new HikeEntity(hikeData.title, hikeData.location)
+    const newHike = new HikeEntity()
+    newHike.title = hikeData.title
+    newHike.description = hikeData.description
+    newHike.location = hikeData.location
+    newHike.date = hikeData.date
+    newHike.imageUrl = hikeData.imageUrl
+    return newHike
 }
 
 
-const addHike = (hike) => {
-    dbAddHike(hike)
-    hikes.push(hike)
+const addHike = async (hike) => {
+    return await dbAddHike(hike)
 }
 
 const getHikes = async () => {
-    const hikes=await dbGetHikes()
+    const hikes = await dbGetHikes()
     return hikes
     // //return hikes.map(hike => {
     //     return makePublicHike(hike)
@@ -64,26 +69,16 @@ const getHikes = async () => {
 }
 
 const getHikesById = (hikeId) => {
-    return hikes.find(hike => hike._id === hikeId)
+    return dbGetOneHike(hikeId)
+    // return hikes.find(hike => hike._uuid === hikeId)
 }
 
 const getHikesIndex = (hikeId) => {
-    return hikes.findIndex(hike => hike.id === hikeId)
+    return hikes.findIndex(hike => hike.uuid === hikeId)
 }
 
-const makePublicHike = (internalHike) => {
-    return {
-        title: internalHike._title,
-        location: internalHike._location,
-        registeredHikers: internalHike._registeredHikers,
-        possibleHazards: internalHike._possibleHazards,
-        description: internalHike._description,
-        id: internalHike._id
-    }
-}
-
-const deleteHike = (hikeIndex) => {
-    hikes.splice(hikeIndex, 1)
+const deleteHike = (uuid) => {
+    dbDeleteHike(uuid)
 }
 
 //News functions
@@ -97,7 +92,7 @@ const getNews = () => {
 }
 
 const getNewsById = (newsId) => {
-    return news.find(article => article._id === newsId)
+    return news.find(article => article._uuid === newsId)
 }
 
 module.exports = {
@@ -114,7 +109,6 @@ module.exports = {
     makePublicHiker,
     getHikersIndex,
     deleteHiker,
-    makePublicHike,
     createHike,
     getHikesIndex,
     deleteHike

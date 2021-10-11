@@ -5,7 +5,7 @@ module.exports = class HikerEntity {
         this._firstName = firstName;
         this._lastName = lastName;
         this._email = email;
-        this._id = uuidv4();
+        this._uuid = uuidv4();
     }
     set registeredHikes(registeredHikes) {
         this._registeredHikes = registeredHikes
@@ -13,11 +13,11 @@ module.exports = class HikerEntity {
     get registeredHikes() {
         return this._registeredHikes
     }
-    set id(id) {
-        this._id = id
+    set uuid(uuid) {
+        this._uuid = uuid
     }
-    get id() {
-        return this._id
+    get uuid() {
+        return this._uuid
     }
 };
 

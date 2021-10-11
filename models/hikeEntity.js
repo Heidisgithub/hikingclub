@@ -1,13 +1,29 @@
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = class HikeEntity {
-    constructor(title, location) {
-        this._title = title;
-        this._location = location;
+    constructor() {
         this._registeredHikers = [];
         this._possibleHazards = [];
         this._description = "No description available";
-        this._id = uuidv4();
+        this._uuid = uuidv4();
+    }
+    set title(title) {
+        this._title = title
+    }
+    get title() {
+        return this._title
+    }
+    set imageUrl(imageUrl) {
+        this._imageUrl = imageUrl
+    }
+    get imageUrl() {
+        return this._imageUrl
+    }
+    set location(location) {
+        this._location = location
+    }
+    get location() {
+        return this._location
     }
     set distance(distance) {
         this._distance = distance
@@ -27,11 +43,11 @@ module.exports = class HikeEntity {
     get registeredHikers() {
         return this._registeredHikers
     }
-    set id(id) {
-        this._id = id
+    set uuid(uuid) {
+        this._uuid = uuid
     }
-    get id() {
-        return this._id
+    get uuid() {
+        return this._uuid
     }
     set description(description) {
         this._description = description
@@ -62,6 +78,16 @@ module.exports = class HikeEntity {
     }
     get possibleHazards() {
         return this._possibleHazards
+    }
+    toJSON() {
+        return {
+          title: this._title,
+          description: this._description,
+          location: this._location,
+          uuid: this._uuid,
+          imageUrl: this._imageUrl,
+          date: this._date
+        }
     }
 };
 

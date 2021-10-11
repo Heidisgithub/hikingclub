@@ -9,11 +9,11 @@ module.exports = class NewsEntity {
     get description() {
         return this._description
     }
-    set id(id) {
-        this._id = id
+    set uuid(uuid) {
+        this._uuid = uuid
     }
-    get id() {
-        return this._id
+    get uuid() {
+        return this._uuid
     }
     set tags(tags) {
         this._tags = tags

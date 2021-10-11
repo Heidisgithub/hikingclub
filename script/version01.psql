@@ -3,6 +3,8 @@ CREATE TABLE hikes (
    title VARCHAR (255) NOT NULL,
    description TEXT,
    location TEXT,
-   uuid VARCHAR(255) NOT NULL
+   uuid VARCHAR(255) NOT NULL,
+   date DATE,
+   image_url TEXT
 );
 
