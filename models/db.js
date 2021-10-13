@@ -83,7 +83,7 @@ async function dbUpdateHike(uuid, hikeData) {
         if (convertedField === "imageUrl") {
             convertedField = "image_url";
         }
-        return `${convertedField} = '${hikeData[field]}'`
+        return pgp.as.format("$1:value = $2", [convertedField, hikeData[field]])
     })
     const updateQuery = updateArray.join(", ");
     console.log(`UPDATE hikes SET ${updateQuery} WHERE uuid = ${uuid}`)
