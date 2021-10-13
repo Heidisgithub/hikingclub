@@ -1,6 +1,6 @@
 const express = require('express');
 const publicRouter = express.Router();
-const { getHikes } = require('../../models/dataService')
+const { getHikes, getHikesById } = require('../../models/dataService')
 
 publicRouter
     .get('/', async(req, res) => {
@@ -15,7 +15,10 @@ publicRouter
     .get('/hikers', (req, res) => res.render('pages/notimplemented'))
     .get('/hikers/:id', (req, res) => res.render('pages/notimplemented'))
     .get('/hikes', (req, res) => res.render('pages/notimplemented'))
-    .get('/hikes/:id', (req, res) => res.render('pages/pages/hikePage'))
+    .get('/hikes/:id', async(req, res) => {
+        const hike = await getHikesById(req.params.id);
+        res.render('pages/hikePage', { hike })
+    })
 
 .post('/userapi/hikers', (req, res) => res.status(400).send("not implemented yet"))
     .put('/userapi/hikers/:id', (req, res) => res.status(400).send("not implemented yet"))

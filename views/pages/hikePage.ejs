@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <%- include ("../partials/header.ejs") %>
+    <%- include ("../partials/header.ejs", {title: hike.title}) %>
 </head>
 
 <body>
@@ -13,37 +13,62 @@
             <div class="headerImageContainer">
                 <img class="headerImage" src="">
             </div>
-            <h1>Hike Title</h1>
+            <h1>
+                <%= hike.title %>
+            </h1>
         </header>
 
+        <%= JSON.stringify(hike) %>
 
-        <% if(!hike.title === "") %>
-            <p>When:
-                <%= hike.title %>
-            </p>
-            <p>Where:</p>
-            <p>Max Participants:</p>
-            <p>Duration:</p>
-            <p>Difficulty Level:</p>
-            <p>Spaces Left:</p>
+            <% if(hike.date){ %>
+                <p>When:
+                    <%= hike.date %>
+                </p>
+                <% } %>
+                    <% if(hike.location){ %>
+                        <p>Where:
+                            <%= hike.location %>
+                        </p>
+                        <% } %>
+                            <% if(hike.maxParticipants){ %>
+                                <p>Max Participants:
+                                    <%= hike.maxParticipants %>
+                                </p>
+                                <% } %>
+                                    <% if(!hike.duration){ %>
+                                        <p>Duration:
+                                            <%= hike.duration %>
+                                        </p>
+                                        <% } %>
+                                            <% if(!hike.difficulty){ %>
+                                                <p>Difficulty Level:
+                                                    <%= hike.difficulty %>
+                                                </p>
+                                                <% } %>
+                                                    <% if(!hike.spaces){ %>
+                                                        <p>Spaces Left:
+                                                            <%= hike.spaces %>
+                                                        </p>
+                                                        <% } %>
 
-            <button>Participate:</button>
+                                                            <button>Participate:</button>
 
-            <h2>About this hike</h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti sed maxime nostrum quis deserunt! Corporis quidem voluptates, alias magnam eaque, quaerat, cum ab libero ad magni asperiores molestias laborum hic.</p>
+                                                            <h2>About this hike</h2>
+                                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti sed maxime nostrum quis deserunt! Corporis quidem voluptates, alias magnam eaque, quaerat, cum ab libero ad magni asperiores
+                                                                molestias laborum hic.</p>
 
-            <h3>POssible hazards</h3>
-            <p>Hazard 1</p>
-            <p>Hazard 2</p>
-            <p>Hazard 3</p>
+                                                            <h3>Possible hazards</h3>
+                                                            <p>Hazard 1</p>
+                                                            <p>Hazard 2</p>
+                                                            <p>Hazard 3</p>
 
-            <button>See all hikes</button>
+                                                            <button>See all hikes</button>
 
-            <!-- Footer -->
-            <footer>
+                                                            <!-- Footer -->
+                                                            <footer>
 
 
-            </footer>
+                                                            </footer>
 
 
 
