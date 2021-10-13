@@ -28,8 +28,8 @@ if (process.env.DATABASE_URL) {
 }
 
 function _convertToHikeEntity(hikerRec) {
-    const newHike =  new HikeEntity()
-    // TODO - Add other keys if we update our MVP keys for the hike entity
+    const newHike = new HikeEntity()
+        // TODO - Add other keys if we update our MVP keys for the hike entity
     newHike.title = hikerRec.title
     newHike.description = hikerRec.description
     newHike.location = hikerRec.location
@@ -75,10 +75,27 @@ async function dbDeleteHike(uuid) {
     return true;
 }
 
+async function dbUpdateHike(uuid, hikeData) {
+    const fieldsArray = Object.keys(hikeData);
+    let updateArray = fieldsArray.map(field => {
+        let convertedField = field;
+        // TODO in case of multiple values separated by an _ we should consider a conversion or switch here instead
+        if (convertedField === "imageUrl") {
+            convertedField = "image_url";
+        }
+        return pgp.as.format("$1:value = $2", [convertedField, hikeData[field]])
+    })
+    const updateQuery = updateArray.join(", ");
+    console.log(`UPDATE hikes SET ${updateQuery} WHERE uuid = ${uuid}`)
+    await db.query("UPDATE hikes SET $2:raw WHERE uuid = $1", [uuid, updateQuery])
+    return true;
+}
+
 
 module.exports = {
     dbAddHike,
     dbGetHikes,
     dbGetOneHike,
-    dbDeleteHike
+    dbDeleteHike,
+    dbUpdateHike
 }
