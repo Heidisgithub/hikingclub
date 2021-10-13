@@ -1,7 +1,7 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
-const {dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike} = require('./db')
+const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike } = require('./db')
 
 
 const hikes = []
@@ -56,21 +56,21 @@ const createHike = (hikeData) => {
 }
 
 
-const addHike = async (hike) => {
+const addHike = async(hike) => {
     return await dbAddHike(hike)
 }
 
-const getHikes = async () => {
+const getHikes = async() => {
     const hikes = await dbGetHikes()
     return hikes
-    // //return hikes.map(hike => {
-    //     return makePublicHike(hike)
-    // })
+        // //return hikes.map(hike => {
+        //     return makePublicHike(hike)
+        // })
 }
 
 const getHikesById = (hikeId) => {
     return dbGetOneHike(hikeId)
-    // return hikes.find(hike => hike._uuid === hikeId)
+        // return hikes.find(hike => hike._uuid === hikeId)
 }
 
 const getHikesIndex = (hikeId) => {
@@ -79,6 +79,10 @@ const getHikesIndex = (hikeId) => {
 
 const deleteHike = (uuid) => {
     dbDeleteHike(uuid)
+}
+
+const updateHike = (uuid, hikeData) => {
+    return dbUpdateHike(uuid, hikeData)
 }
 
 //News functions
@@ -94,6 +98,7 @@ const getNews = () => {
 const getNewsById = (newsId) => {
     return news.find(article => article._uuid === newsId)
 }
+
 
 module.exports = {
     addHike,
@@ -111,5 +116,6 @@ module.exports = {
     deleteHiker,
     createHike,
     getHikesIndex,
-    deleteHike
+    deleteHike,
+    updateHike
 }
