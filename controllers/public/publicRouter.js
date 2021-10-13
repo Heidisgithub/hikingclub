@@ -1,5 +1,6 @@
 const express = require('express');
 const publicRouter = express.Router();
+const { getHikes } = require("../../models/dataService");
 
 publicRouter
     .get('/', (req, res) => res.render('pages/notimplemented'))

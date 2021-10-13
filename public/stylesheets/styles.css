@@ -1,0 +1,27 @@
+h1.hikeTitle {
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.headerImage {
+    background-color: #edeeed;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.headerImageContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    height: 100vw;
+}
+
+nav {
+    margin-bottom: 0;
+}
