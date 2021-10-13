@@ -1,8 +1,14 @@
 const express = require('express');
 const publicRouter = express.Router();
+const {getHikes}= require('../../models/dataService')
 
 publicRouter
-.get('/', (req, res) => res.render('pages/notimplemented'))
+.get('/', async (req, res) => {
+  //Todo fetch hikes data with data sevice and pass it to template
+  const hikes = await getHikes()
+  res.render('pages/hikes', {hikes})
+
+})
   .get('/login', (req, res) => res.render('pages/notimplemented'))
   .get('/news', (req, res) => res.render('pages/notimplemented'))
   .get('/news/:id', (req, res) => res.render('pages/notimplemented'))
