@@ -79,6 +79,7 @@ async function dbUpdateHike(uuid, hikeData) {
     const fieldsArray = Object.keys(hikeData);
     let updateArray = fieldsArray.map(field => {
         let convertedField = field;
+        // TODO in case of multiple values separated by an _ we should consider a conversion or switch here instead
         if (convertedField === "imageUrl") {
             convertedField = "image_url";
         }
