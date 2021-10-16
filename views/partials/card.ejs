@@ -1,7 +1,23 @@
-<title>
-    <%= title %>
-</title>
-<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/stylesheets/styles.css" />
+<a href="<%= url %>/<%= card.uuid %>" class="infocard">
+    <div class="infocardImageContainer">
+        <div class="cardGradient"></div>
+        <img src="<%= card.imageUrl %>" class="infocardImage">
+        <div class="infocardData">
+            <% if(card.title){ %>
+                <p>
+                    <%= card.title%>
+                </p>
+                <%}%>
+                    <% if(card.location){ %>
+                        <p>
+                            <%= card.location %>
+                        </p>
+                        <%}%>
+                            <% if(card.date){ %>
+                                <p>
+                                    <%= card.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
+                                </p>
+                                <%}%>
+        </div>
+    </div>
+</a>

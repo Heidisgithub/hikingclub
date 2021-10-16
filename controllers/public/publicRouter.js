@@ -14,7 +14,7 @@ publicRouter
     .get('/hikers', (req, res) => res.render('pages/notimplemented'))
     .get('/hikers/:id', (req, res) => res.render('pages/notimplemented'))
     .get('/hikes', async(req, res) => {
-        res.render('pages/hikeslist', { hikes: await getHikes() })
+        res.render('pages/hikeslist', { hikes: await getHikes(), url: req.url })
     })
     .get('/hikes/:id', async(req, res) => {
         res.render('pages/hikePage', { hike: await getHikesById(req.params.id) })

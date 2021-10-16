@@ -166,6 +166,19 @@ h1.hikeTitle {
     overflow: hidden;
 }
 
+@media(max-width: 760px) {
+    .infocard {
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+@media(max-width: 400px) {
+    .infocardCollection {
+        padding: 3rem 0vw
+    }
+}
+
 .infocard:hover .cardGradient {
     background-size: 200%;
     transition: 0.3s ease-out
