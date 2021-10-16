@@ -1,0 +1,23 @@
+<a href="<%= url %>/<%= card.uuid %>" class="infocard">
+    <div class="infocardImageContainer">
+        <div class="cardGradient"></div>
+        <img src="<%= card.imageUrl %>" class="infocardImage">
+        <div class="infocardData">
+            <% if(card.title){ %>
+                <p>
+                    <%= card.title%>
+                </p>
+                <%}%>
+                    <% if(card.location){ %>
+                        <p>
+                            <%= card.location %>
+                        </p>
+                        <%}%>
+                            <% if(card.date){ %>
+                                <p>
+                                    <%= card.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
+                                </p>
+                                <%}%>
+        </div>
+    </div>
+</a>

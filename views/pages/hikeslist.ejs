@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/header", {title: "These are our hikes!"}) %>
+
+    <body>
+        <!-- Mobile Navbar -->
+        <%- include("../partials/nav") %>
+            <h1 class="pageH1">What we have to offer</h1>
+            <% if(hikes){ %>
+                <div class="infocardCollection">
+                    <%for (let i= 0; i < hikes.length; i++) { %>
+                        <%- include("../partials/card", {card: hikes[i], url}) %>
+                            <%}%>
+                </div>
+                <%}%>
+
+
+
+                    <!-- Footer -->
+                    <%- include("../partials/footer") %>
+    </body>
+
+</html>
