@@ -111,7 +111,8 @@ h1.hikeTitle {
     }
 }
 
-.headerGradient {
+.headerGradient,
+.cardGradient {
     content: "";
     height: 100%;
     width: 100%;
@@ -120,6 +121,8 @@ h1.hikeTitle {
     z-index: 1;
     bottom: 0;
     opacity: 0.8;
+    background-size: 100%;
+    transition: 0.3s ease-out
 }
 
 ::-webkit-scrollbar {
@@ -147,4 +150,58 @@ h1.hikeTitle {
  ::-webkit-scrollbar-thumb:hover {
     background: #555;
     opacity: 1;
+}
+
+.infocardCollection {
+    padding: 3rem 7vw;
+    display: flex;
+    flex-basis: 50%;
+    flex-flow: wrap;
+}
+
+.infocard {
+    max-height: 30rem;
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+
+.infocard:hover .cardGradient {
+    background-size: 200%;
+    transition: 0.3s ease-out
+}
+
+.infocard:hover .infocardImage {
+    transform: scale(1.2);
+    transition: .3s ease-out;
+}
+
+.infocard:nth-child(odd) {
+    margin-left: unset;
+}
+
+.infocardData {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: #fff;
+    z-index: 2;
+}
+
+.infocardImage {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+    transition: .3s ease-out;
+}
+
+.infocardImageContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.pageH1 {
+    padding: 0 7vw;
 }
