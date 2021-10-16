@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <%- include("../partials/header.ejs") %>
-    <title>Hiking Club</title>
+    <%- include("../partials/header.ejs",{title:"Hiking Club"}) %>
 </head>
 
 <body>
@@ -20,7 +19,7 @@
             <!-- Hike Image  -->
     <div class="hikeImg">
         <a href=""><img class="hikeImage" src="<%= hikes[i].imageUrl%>"></a>
-        <div class="hikeInfo">
+        <div class="hikeText">
         <p class="hikeTitle"><strong><%= hikes[i].title%></strong></p>
         <p class="hikeLoca"><%= hikes[i].location%></p>
         <p class="hikeDesc"><%= hikes[i].description%></p>
@@ -40,10 +39,8 @@
 
 
     <!-- Footer -->
-    <footer>
+    <%- include("../partials/footer.ejs") %>
 
-
-    </footer>
 
 
 

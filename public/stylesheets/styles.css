@@ -30,7 +30,6 @@ body {
         justify-content: center;
         width: 100%;
       }
-    .headerImg img
   }
 
 .headerImg{
@@ -74,7 +73,7 @@ h2{
     height: 100%;
     object-fit: cover;
 }
-.hikeInfo{
+.hikeText{
 padding-left: 50px;
 padding-right: 50px;
 font-size: 30px;
@@ -102,6 +101,8 @@ width: 50%;
     margin: 20px;
    padding: 15px;
     font-size: 30px;
+}
+
 .footerLinks li {
     padding-left: 1rem;
 }
