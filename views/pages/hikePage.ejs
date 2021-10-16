@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ("../partials/header.ejs", {title: hike.title}) %>
+</head>
+
+<body>
+
+    <%- include ("../partials/nav.ejs") %>
+
+        <header>
+            <div class="headerImageContainer">
+                <img class="headerImage" src="<%= hike.imageUrl %>">
+            </div>
+            <h1 class="hikeTitle">
+                <%= hike.title %>
+            </h1>
+            <div class="headerGradient"></div>
+        </header>
+        <!-- 
+        <%= JSON.stringify(hike) %> -->
+        <div class="hikeSpecs">
+            <div class="hikeInfo">
+                <% if(hike.date){ %>
+                    <div class="infoRow">
+                        <div class="info">When:</div>
+                        <div>
+                            <%= hike.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% if(hike.location){ %>
+                            <div class="infoRow">
+                                <div class="info">Where:</div>
+                                <div>
+                                    <%= hike.location %>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% if(hike.maxParticipants){ %>
+                                    <div class="infoRow">
+                                        <div class="info">Max Participants:</div>
+                                        <div>
+                                            <%= hike.maxParticipants %>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% if(hike.duration){ %>
+                                            <div class="infoRow">
+                                                <div class="info">Duration:</div>
+                                                <div>
+                                                    <%= hike.duration %>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% if(hike.difficulty){ %>
+                                                    <div class="infoRow">
+                                                        <div class="info">Difficulty Level:</div>
+                                                        <div>
+                                                            <%= hike.difficulty %>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <% if(hike.spaces){ %>
+                                                            <div class="infoRow">
+                                                                <div class="info">Spaces Left:</div>
+                                                                <div>
+                                                                    <%= hike.spaces %>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+            </div>
+            <button>Participate:</button></div>
+        </div>
+        <div class="aboutHike">
+            <h2>About this hike</h2>
+            <% if(hike.description) { %>
+                <p>
+                    <%= hike.description %>
+                </p>
+                <% } %>
+
+                    <button>See all hikes</button>
+        </div>
+
+        <!-- Footer -->
+        <%- include("../partials/footer.ejs") %>
+
+
+
+</body>
+
+</html>
