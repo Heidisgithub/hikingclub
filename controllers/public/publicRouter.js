@@ -17,6 +17,7 @@ publicRouter
     .get('/hikes', (req, res) => res.render('pages/notimplemented'))
     .get('/hikes/:id', async(req, res) => {
         const hike = await getHikesById(req.params.id);
+        console.log(hike)
         res.render('pages/hikePage', { hike })
     })
 

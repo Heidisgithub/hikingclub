@@ -11,64 +11,81 @@
 
         <header>
             <div class="headerImageContainer">
-                <img class="headerImage" src="">
+                <img class="headerImage" src="<%= hike.imageUrl %>">
             </div>
-            <h1>
+            <h1 class="hikeTitle">
                 <%= hike.title %>
             </h1>
+            <div class="headerGradient"></div>
         </header>
-
-        <%= JSON.stringify(hike) %>
-
-            <% if(hike.date){ %>
-                <p>When:
-                    <%= hike.date %>
+        <!-- 
+        <%= JSON.stringify(hike) %> -->
+        <div class="hikeSpecs">
+            <div class="hikeInfo">
+                <% if(hike.date){ %>
+                    <div class="infoRow">
+                        <div class="info">When:</div>
+                        <div>
+                            <%= hike.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% if(hike.location){ %>
+                            <div class="infoRow">
+                                <div class="info">Where:</div>
+                                <div>
+                                    <%= hike.location %>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% if(hike.maxParticipants){ %>
+                                    <div class="infoRow">
+                                        <div class="info">Max Participants:</div>
+                                        <div>
+                                            <%= hike.maxParticipants %>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% if(hike.duration){ %>
+                                            <div class="infoRow">
+                                                <div class="info">Duration:</div>
+                                                <div>
+                                                    <%= hike.duration %>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% if(hike.difficulty){ %>
+                                                    <div class="infoRow">
+                                                        <div class="info">Difficulty Level:</div>
+                                                        <div>
+                                                            <%= hike.difficulty %>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <% if(hike.spaces){ %>
+                                                            <div class="infoRow">
+                                                                <div class="info">Spaces Left:</div>
+                                                                <div>
+                                                                    <%= hike.spaces %>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+            </div>
+            <button>Participate:</button></div>
+        </div>
+        <div class="aboutHike">
+            <h2>About this hike</h2>
+            <% if(hike.description) { %>
+                <p>
+                    <%= hike.description %>
                 </p>
                 <% } %>
-                    <% if(hike.location){ %>
-                        <p>Where:
-                            <%= hike.location %>
-                        </p>
-                        <% } %>
-                            <% if(hike.maxParticipants){ %>
-                                <p>Max Participants:
-                                    <%= hike.maxParticipants %>
-                                </p>
-                                <% } %>
-                                    <% if(!hike.duration){ %>
-                                        <p>Duration:
-                                            <%= hike.duration %>
-                                        </p>
-                                        <% } %>
-                                            <% if(!hike.difficulty){ %>
-                                                <p>Difficulty Level:
-                                                    <%= hike.difficulty %>
-                                                </p>
-                                                <% } %>
-                                                    <% if(!hike.spaces){ %>
-                                                        <p>Spaces Left:
-                                                            <%= hike.spaces %>
-                                                        </p>
-                                                        <% } %>
 
-                                                            <button>Participate:</button>
+                    <button>See all hikes</button>
+        </div>
 
-                                                            <h2>About this hike</h2>
-                                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti sed maxime nostrum quis deserunt! Corporis quidem voluptates, alias magnam eaque, quaerat, cum ab libero ad magni asperiores
-                                                                molestias laborum hic.</p>
-
-                                                            <h3>Possible hazards</h3>
-                                                            <p>Hazard 1</p>
-                                                            <p>Hazard 2</p>
-                                                            <p>Hazard 3</p>
-
-                                                            <button>See all hikes</button>
-
-                                                            <!-- Footer -->
-                                                            <footer>
-
-
-                                                            </footer>
+        <!-- Footer -->
+        <%- include("../partials/footer.ejs") %>
 
 
 
