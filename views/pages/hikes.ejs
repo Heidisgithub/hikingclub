@@ -2,68 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <title>Hiking Club</title>
+    <%- include("../partials/header.ejs",{title:"Hiking Club"}) %>
 </head>
 
 <body>
     <!-- Mobile Navbar -->
-    <div>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="">Home</a>
-        <a href="">Hikes</a>
-        <a href="">News</a>
-        <a href="">Our Members</a>
-        <a href="">Register</a>
-    </div>
+    <%- include("../partials/nav.ejs") %>
 
-    <header>
-        <h1>Hiking Club</h1>
-        <!-- Header Image -->
-        <a href="">
-            <img src="">
-        </a>
+            <!-- Header Image -->
+    <header class="headerImg">
+        <h1 class="headTitle">Hiking Club</h1>
     </header>
 
-    <h2>Upcoming Hikes</h2>
-    <%= JSON.stringify(hikes)%>
+    <h2><strong>Upcoming Hikes</strong></h2>
     <%for (let i= 0; i < hikes.length && i < 3; i++) { %>
-    <div>
-        <!-- Hike Image  -->
-        <a href="">
-            <img src="">
-        </a>
-        <p><%= hikes[i].title%></p>
-        <p>Hike location</p>
-        <p>Hike data</p>
+            <!-- Hike Image  -->
+    <div class="hikeImg">
+        <a href=""><img class="hikeImage" src="<%= hikes[i].imageUrl%>"></a>
+        <div class="hikeText">
+        <p class="hikeTitle"><strong><%= hikes[i].title%></strong></p>
+        <p class="hikeLoca"><%= hikes[i].location%></p>
+        <p class="hikeDesc"><%= hikes[i].description%></p>
+    </div>
     </div>
     <%}%>
 
-    <!-- separator image -->
-    <a href="">
-        <img src="">
-    </a>
-    <button>Join us</button>
+        <!-- separator image -->
+      
+    <div class="sepImg">
+        <h4 class="subTitle">Let's hike together</h4>
+    <button class="joinBtn">Join us</button>
+</div>
 
-    <!-- News Image -->
-    <a href="">
-        <img src="">
-    </a>
-    <h2>News Title</h2>
-    <h3>News Date</h3>
 
-    <button>Read more</button>
 
 
 
     <!-- Footer -->
-    <footer>
+    <%- include("../partials/footer.ejs") %>
 
-
-    </footer>
 
 
 
