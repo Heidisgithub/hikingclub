@@ -1,3 +1,40 @@
+nav {
+    margin-bottom: 0 !important;
+}
+
+.navbar-right {
+    margin-right: unset !important;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footerLinks li {
+    padding-left: 1rem;
+}
+
+.footerLinks a {
+    color: #fff;
+}
+
+.footerLinks li:first-child {
+    padding-left: unset;
+}
+
+footer {
+    padding: 3rem 7vw;
+    background-color: #444;
+}
+
+footer>div {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
 h1.hikeTitle {
     margin-top: 0;
     margin-bottom: 0;
@@ -85,43 +122,6 @@ h1.hikeTitle {
     opacity: 0.8;
 }
 
-nav {
-    margin-bottom: 0 !important;
-}
-
-.navbar-right {
-    margin-right: unset !important;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.footerLinks li {
-    padding-left: 1rem;
-}
-
-.footerLinks a {
-    color: #fff;
-}
-
-.footerLinks li:first-child {
-    padding-left: unset;
-}
-
-footer {
-    padding: 3rem 7vw;
-    background-color: #444;
-}
-
-footer>div {
-    display: flex;
-}
-
-li {
-    list-style: none;
-}
-
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -130,8 +130,7 @@ li {
 /* Track */
 
  ::-webkit-scrollbar-track {
-    background: transparent;
-    opacity: 0;
+    display: none;
 }
 
 
