@@ -1,3 +1,150 @@
+nav {
+    margin-bottom: 0 !important;
+}
+
+.navbar-right {
+    margin-right: unset !important;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.footerLinks li {
+    padding-left: 1rem;
+}
+
+.footerLinks a {
+    color: #fff;
+}
+
+.footerLinks li:first-child {
+    padding-left: unset;
+}
+
+footer {
+    padding: 3rem 7vw;
+    background-color: #444;
+}
+
+footer>div {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
+h1.hikeTitle {
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    z-index: 2;
+    bottom: 5%;
+    color: #fff;
+    left: 7vw
+}
+
+.headerImage {
+    background-color: #edeeed;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.headerImageContainer {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.hikeSpecs,
+.aboutHike {
+    padding: 3rem 7vw;
+}
+
+.hikeInfo {
+    display: flex;
+    justify-content: space-between
+}
+
+.hikeInfo .infoRow {
+    width: 50%;
+    padding-left: 1rem;
+}
+
+.hikeInfo .infoRow:nth-child(odd) {
+    padding-left: 0;
+}
+
+.infoRow {
+    display: flex;
+    padding-bottom: 3rem;
+}
+
+@media(max-width: 400px) {
+    .hikeInfo {
+        flex-flow: column;
+    }
+}
+
+.info {
+    padding-right: 1rem;
+    font-weight: 600;
+}
+
+.aboutHike {
+    background-color: #edeeed;
+}
+
+@media(min-width: 754px) {
+    header {
+        height: calc(100vh - 50px);
+        overflow: hidden;
+    }
+}
+
+@media(max-width: 754px) {
+    header {
+        height: calc(100vh - 183.5px);
+        overflow: hidden;
+    }
+}
+
+.headerGradient {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: linear-gradient( 15deg, #000 10%, transparent 40%);
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    display: none;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+    opacity: 0.6;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    opacity: 1;
 }
