@@ -1,16 +1,21 @@
 const express = require('express');
 const { seedNews } = require('../../utils/helper')
-const { getNews, getNewsById, } = require('../../models/dataService')
+const { getNews, getNewsById } = require('../../models/dataService')
 const newsRouter = express.Router();
 
-seedNews()
+// seedNews()
 
-newsRouter.get('/:newsId', (req, res) => {
-    res.send(getNewsById(req.params.newsId))
+newsRouter.get('/', async (req, res) => {
+    res.send(await getNews())
 })
 
-newsRouter.get('/', (req, res) => {
-    res.send(getNews())
+newsRouter.get('/:id', async (req, res) => {
+    const searchNews = await getNewsById(req.params.id)
+    if (searchNews) {
+        res.send(searchNews)
+    } else {
+        res.status(404).send()
+    }
 })
 
 newsRouter.post('/', (req, res) => {

@@ -1,7 +1,7 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
-const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike } = require('./db')
+const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews } = require('./db')
 
 
 const hikes = []
@@ -96,12 +96,13 @@ const addNews = (article) => {
     news.push(article)
 }
 
-const getNews = () => {
+const getNews = async () => {
+    const news = await dbGetNews()
     return news
 }
 
 const getNewsById = (newsId) => {
-    return news.find(article => article._uuid === newsId)
+    return dbGetOneNews(newsId)
 }
 
 
