@@ -1,16 +1,16 @@
 const express = require('express');
 const { seedNews } = require('../../utils/helper')
-const { getNews } = require('../../models/dataService')
+const { getNews, getNewsById, } = require('../../models/dataService')
 const newsRouter = express.Router();
 
 seedNews()
 
-newsRouter.get('/', (req, res) => {
-    res.send(getNews())
+newsRouter.get('/:newsId', (req, res) => {
+    res.send(getNewsById(req.params.newsId))
 })
 
-newsRouter.get('/:id', (req, res) => {
-    res.status(400).send('Not implemented yet')
+newsRouter.get('/', (req, res) => {
+    res.send(getNews())
 })
 
 newsRouter.post('/', (req, res) => {

@@ -6,7 +6,12 @@ const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike } = requ
 
 const hikes = []
 const hikers = []
-const news = []
+const news = [
+    {title:"newstitle1", content:"text", picture: "/images/hiker-g109e87bcd_1920.jpg"},
+    {title:"newstitle2", content:"text", picture: "/images/hiking-g0342fd644_1920.jpg"},
+    {title:"newstitle3", content:"text", picture: "/images/travel-g220a65d21_1920.jpg"},
+
+]
 
 //Hikers functions
 const createHiker = (hikerData) => {
