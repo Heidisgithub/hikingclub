@@ -10,13 +10,16 @@
     <%- include("../partials/nav.ejs") %>
 
         <!-- News Image -->
-        <header class="newsImg">
-            <h1 class="newsTitle">Hiking News</h1>
+        <header class="newsImg" style='background-image: url("<%= news.picture%>")'>
+            <h1 class="newsTitle">
+                <%= news.title%>
+            </h1>
         </header>
 
         <div class="newsdescription">
-            <h3><strong>Author:</strong></h3>
-            <h3><strong>Date:</strong></h3>
+            <h3><strong>               
+                 <%= news.publishDate%>
+            </strong></h3>
         </div>
 
         <div class="tags">

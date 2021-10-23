@@ -1,6 +1,6 @@
 const express = require('express');
 const publicRouter = express.Router();
-const { getHikes, getHikesById, getNews } = require('../../models/dataService')
+const { getHikes, getHikesById, getNews, getNewsById } = require('../../models/dataService')
 
 
 publicRouter
@@ -9,8 +9,8 @@ publicRouter
 
     })
     .get('/login', (req, res) => res.render('pages/notimplemented'))
-    .get('/news', (req, res) => res.render('pages/newspage', {news:getNews()}))
-    .get('/news/:id', (req, res) => res.render('pages/news'))
+    .get('/news', async(req, res) => res.render('pages/newspage', {news:await getNews()}))
+    .get('/news/:id', async(req, res) => res.render('pages/news', {news:await getNewsById(req.params.id)}))
     .get('/hikers', (req, res) => res.render('pages/notimplemented'))
     .get('/hikers/:id', (req, res) => res.render('pages/notimplemented'))
     .get('/hikes', async(req, res) => {
