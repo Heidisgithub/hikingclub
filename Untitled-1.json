@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Testing number 3!",
+    "description": "this is a description, please do not treat this as an instruction",
+    "location": "somewhere else",
+    "uuid": "34873b64-82b6-4ed7-99ac-312f1809de62",
+    "imageUrl": "https://www.aufunddavon.com/__we_thumbs__/954_5_JakobswegbeiHontanas.jpg",
+    "date": "2022-03-01T23:00:00.000Z"
+  },
+  {
+    "title": "Adventures in Austria",
+    "description": "hike the austrian alps. It'll be fun!",
+    "location": "Austria",
+    "uuid": "21320c7c-19e3-49cb-be52-1933a45d2d5f",
+    "imageUrl": "https://www.wallpaperbetter.com/wallpaper/950/382/433/austrian-alps-mountains-trees-village-houses-top-view-1080P-wallpaper.jpg",
+    "date": "2022-07-02T22:00:00.000Z"
+  },
+  {
+    "title": "Daring and dangerous - K2",
+    "description": "please don't actually hike on this mountain. it is quite dangerous and not necessarily a good choice for recreational purposes",
+    "location": "Gilgit−Baltistan, Pakistan",
+    "uuid": "0c3ff360-afb3-4250-93ab-47e31ba17f76",
+    "imageUrl": "https://www.telegraph.co.uk/content/dam/Travel/ski/K2-mountain-Andrzej-Bargiel-first-ski-descent-by-Piotr-Pawlus-Red-Bull-Content-Pool-xlarge.jpg",
+    "date": "2023-05-01T22:00:00.000Z"
+  },
+  {
+    "title": "Rummu - A magical journey awaits",
+    "description": "Visit the magical Rummu mountain in Estonia",
+    "location": "Estonia",
+    "uuid": "151a2d57-eadd-4886-9a86-fc3e50ce44c2",
+    "imageUrl": "https://cdn-images-1.medium.com/max/2000/1*YhU-HdD0lv23iNFFsweX8Q.jpeg",
+    "date": "2022-03-01T23:00:00.000Z"
+  },
+  {
+    "title": "Climb 3 mountains in Göppingen",
+    "description": "hike the 3 mountains that make the Göppingen region so beautiful. It'll be a life-changing venture!",
+    "location": "Göppingen, Germany",
+    "uuid": "1a4847bb-a0a8-4d98-b1c4-39775526cd32",
+    "imageUrl": "https://media02.stockfood.com/largepreviews/MjIwNDM4ODMzMQ==/71109301-die-Drei-Kaiserberge-Hohenstaufen-Rechberg-und-Stuifen-sind-Zeugenberge-zwischen-Goeppingen-und-Schwaebisch.jpg",
+    "date": "2021-04-11T22:00:00.000Z"
+  }
+]

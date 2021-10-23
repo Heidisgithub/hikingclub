@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/header.ejs",{title:"Hiking Club"}) %>
+</head>
+
+<body>
+    <!-- Mobile Navbar -->
+    <%- include("../partials/nav.ejs") %>
+
+        <!-- Header Image -->
+        <header class="newsImg">
+            <h1 class="headTitle">Hiking News</h1>
+        </header>
+
+        <h2><strong>News</strong></h2>
+        <%for (let i=0; i < news.length && i < 3; i++) { %>
+            <!-- Hike Image  -->
+
+            <div class="newspageImages">
+                <a href=""><img class="newsImage" src="<%= news[i].picture%>"></a>
+                <div class="newsText">
+                    <p class="newsTitle">
+                        <strong>
+                            <%= news[i].title%>
+                        </strong>
+                    </p>
+                    <p class="hikeDesc">
+                        <%= news[i].content%>
+                    </p>
+                </div>
+            </div>
+
+            <%}%>
+
+
+
+                <!-- News image -->
+                <div class="newsFootImg">
+                    <button class="joinBtn">Read more</button>
+                </div>
+
+
+
+
+                <!-- Footer -->
+                <%- include("../partials/footer.ejs") %>
+
+
+
+
+</body>
+
+</html>
