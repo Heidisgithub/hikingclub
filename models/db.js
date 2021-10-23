@@ -1,14 +1,28 @@
 const pgp = require('pg-promise')()
+const fetch = require('node-fetch')
 const username = process.env.DB_USER
 const password = process.env.DB_PASS
 const host = process.env.DB_HOST
 const port = process.env.DB_PORT
 const database = process.env.DB_DATABASE
+const contentfulSpaceId = process.env.CONTENTFUL_SPACE_ID
+const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 const HikeEntity = require('./hikeEntity')
 const HikerEntity = require('./hikerEntity')
 
 const local_uri = `postgres://${username}:${password}@${host}:${port}/${database}`
 const uri = process.env.DATABASE_URL
+const contentfulUrl = `https://graphql.contentful.com/content/v1/spaces/${contentfulSpaceId}/`
+const contentfulInitObj = (query) => {
+    return {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${contentfulAccessToken}`
+        },
+        body: JSON.stringify({ query })
+    }
+}
 
 
 console.log(uri)
@@ -29,7 +43,7 @@ if (process.env.DATABASE_URL) {
 
 function _convertToHikeEntity(hikerRec) {
     const newHike = new HikeEntity()
-        // TODO - Add other keys if we update our MVP keys for the hike entity
+    // TODO - Add other keys if we update our MVP keys for the hike entity
     newHike.title = hikerRec.title
     newHike.description = hikerRec.description
     newHike.location = hikerRec.location
@@ -91,11 +105,89 @@ async function dbUpdateHike(uuid, hikeData) {
     return true;
 }
 
+async function dbGetNews() {
+    const query = `
+    {
+        newsCollection {
+        items {
+            title
+            sys {id, firstPublishedAt}
+            descriptionPreview
+            picture { url }
+        }
+        }
+    }`
+    let newsArticles
+    await fetch(contentfulUrl, contentfulInitObj(query))
+        .then((response) => response.json())
+        .then(({ data, errors }) => {
+            if (errors) {
+                console.error(errors);
+            }
+            console.log(data.newsCollection.items)
+            // rerender the entire component with new data
+            newsArticles = data.newsCollection.items;
+        })
+    let mappedNews = newsArticles.map(article => {
+        return {
+            title: article.title,
+            contentPreview: article.descriptionPreview,
+            picture: article.picture.url,
+            id: article.sys.id,
+            publishDate: article.sys.firstPublishedAt
+        }
+    })
+    return mappedNews.sort((a, b) => {
+        // Returning the hikes in descending order by publishing date
+        a = Date.parse(a.publishDate)
+        b = Date.parse(b.publishDate)
+        if (a > b) {
+            return -1
+        } else if (a < b) {
+            return 1
+        } else if (a = b) {
+            return 0
+        }
+    })
+}
+
+async function dbGetOneNews(sysId) {
+    const query = `
+    {
+        news (id: "${sysId}") {
+          title
+          picture {url}
+          description {json}
+          sys {
+            firstPublishedAt
+          }
+        }
+      }`
+    let newsArticle
+    await fetch(contentfulUrl, contentfulInitObj(query))
+        .then((response) => response.json())
+        .then(({ data, errors }) => {
+            if (errors) {
+                console.error(errors);
+            }
+            console.log(data.news)
+            // rerender the entire component with new data
+            newsArticle = data.news
+        })
+    return {
+        title: newsArticle.title,
+        picture: newsArticle.picture.url,
+        publishDate: newsArticle.sys.firstPublishedAt,
+        content: newsArticle.description.json
+    }
+}
 
 module.exports = {
     dbAddHike,
     dbGetHikes,
     dbGetOneHike,
     dbDeleteHike,
-    dbUpdateHike
+    dbUpdateHike,
+    dbGetNews,
+    dbGetOneNews
 }
