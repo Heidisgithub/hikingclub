@@ -113,6 +113,12 @@ async function dbGetNews() {
             title
             sys {id, firstPublishedAt}
             descriptionPreview
+            contentfulMetadata {
+                tags {
+                  id
+                  name
+                }
+            }
             picture { url }
         }
         }
@@ -134,7 +140,13 @@ async function dbGetNews() {
             contentPreview: article.descriptionPreview,
             picture: article.picture.url,
             id: article.sys.id,
-            publishDate: article.sys.firstPublishedAt
+            publishDate: article.sys.firstPublishedAt,
+            tagIds: article.contentfulMetadata.tags.map(tag => {
+                return tag.id
+            }),
+            tags: article.contentfulMetadata.tags.map(tag => {
+                return tag.name
+            })
         }
     })
     return mappedNews.sort((a, b) => {
@@ -158,6 +170,12 @@ async function dbGetOneNews(sysId) {
           title
           picture {url}
           description {json}
+          contentfulMetadata {
+            tags {
+              id
+              name
+            }
+          }
           sys {
             firstPublishedAt
           }
@@ -178,7 +196,13 @@ async function dbGetOneNews(sysId) {
         title: newsArticle.title,
         picture: newsArticle.picture.url,
         publishDate: newsArticle.sys.firstPublishedAt,
-        content: newsArticle.description.json
+        content: newsArticle.description.json,
+        tagIds: newsArticle.contentfulMetadata.tags.map(tag => {
+            return tag.id
+        }),
+        tags: newsArticle.contentfulMetadata.tags.map(tag => {
+            return tag.name
+        })
     }
 }
 
