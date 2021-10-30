@@ -1,7 +1,7 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
-const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews } = require('./db')
+const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbGetRegistrations } = require('./db')
 
 
 const hikes = []
@@ -127,53 +127,10 @@ const getRegistrations = (hikeId) => {
     ])
 }
 
-const getAllRegistrations = () => {
-    return ([{
-            name: "John Doe",
-            email: "jd@wat.com",
-            message: "Hi, I'd like to apply to this hike",
-            hikeId: 323,
-            hikeName: "Some name for a hike",
-            dateAdded: "2021-10-11",
-            id: 1
-        },
-        {
-            name: "Jane Doe",
-            email: "janed@wat.com",
-            message: "Haafadsga fadsf asdf",
-            hikeId: 553,
-            hikeName: "Some name for a hike",
-            dateAdded: "2021-09-22",
-            id: 2
-        },
-        {
-            name: "Elon Musk",
-            email: "em@wat.com",
-            message: "I am an elongated musket gun",
-            hikeId: 332,
-            hikeName: "Some name for a hike",
-            dateAdded: "2021-06-22",
-            id: 3
-        },
-        {
-            name: "Elon Musk",
-            email: "em@wat.com",
-            message: "I am an elongated musket gun",
-            hikeId: 112,
-            hikeName: "Some name for a hike",
-            dateAdded: "2021-03-12",
-            id: 4
-        },
-        {
-            name: "Elon Musk",
-            email: "em@wat.com",
-            message: "I am an elongated musket gun",
-            hikeId: 3786,
-            hikeName: "Some name for a hike",
-            dateAdded: "2021-01-21",
-            id: 5
-        },
-    ])
+const getAllRegistrations = async () => {
+    const registrations = await dbGetRegistrations()
+    console.log(registrations)
+    return registrations
 }
 
 module.exports = {

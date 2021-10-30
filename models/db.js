@@ -210,6 +210,12 @@ async function dbGetOneNews(sysId) {
     }
 }
 
+//Registrations
+async function dbGetRegistrations() {
+    const registrations = await db.query(`SELECT * FROM registrations;`);
+    return registrations
+}
+
 module.exports = {
     dbAddHike,
     dbGetHikes,
@@ -217,5 +223,6 @@ module.exports = {
     dbDeleteHike,
     dbUpdateHike,
     dbGetNews,
-    dbGetOneNews
+    dbGetOneNews,
+    dbGetRegistrations
 }
