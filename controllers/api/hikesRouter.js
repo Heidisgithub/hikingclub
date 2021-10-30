@@ -1,6 +1,6 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration } = require('../../models/dataService')
+const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService')
 const hikesRouter = express.Router();
 
 
@@ -8,6 +8,10 @@ const hikesRouter = express.Router();
 
 hikesRouter.get('/', async(req, res) => {
     res.send(await getHikes())
+})
+
+hikesRouter.get('/registrations', async(req, res) => {
+    res.send(await getAllRegistrations())
 })
 
 hikesRouter.get('/:uuid', async(req, res) => {
@@ -75,5 +79,13 @@ hikesRouter.delete('/:uuid', async(req, res) => {
         res.status(406).send(err)
     }
 })
+
+// hikesRouter.delete('/registrations/:id', async(req,res) => {
+//     try {
+//         res.status(204).send(await deleteRegistration(req.params.id))
+//     } catch (err) {
+//         res.status(406).send(err)
+//     }
+// })
 
 module.exports = hikesRouter

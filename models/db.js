@@ -233,6 +233,12 @@ async function dbAddRegistration(regMessage) {
     return true;
 }
 
+//Registrations
+async function dbGetRegistrations() {
+    const registrations = await db.query(`SELECT * FROM registrations;`);
+    return registrations
+}
+
 module.exports = {
     dbAddHike,
     dbGetHikes,
@@ -242,5 +248,6 @@ module.exports = {
     dbGetNews,
     dbGetOneNews,
     dbGetRegistrationsByHikeId,
-    dbAddRegistration
+    dbAddRegistration,
+    dbGetRegistrations
 }

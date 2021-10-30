@@ -26,7 +26,8 @@
                     <div class="infoRow">
                         <div class="info">When:</div>
                         <div>
-                            <%= hike.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
+                            <%= hike.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short",
+                                day:"numeric"}) %>
                         </div>
                     </div>
                     <% } %>
@@ -71,7 +72,8 @@
                                                             </div>
                                                             <% } %>
             </div>
-            <button>Participate:</button></div>
+            <button>Participate:</button>
+        </div>
         </div>
         <div class="aboutHike">
             <h2>About this hike</h2>
@@ -81,7 +83,28 @@
                 </p>
                 <% } %>
 
-                    <a href="/hikes"><button>See all hikes</button></a>
+                    <h2>Registration</h2>
+                    <div class="registration">
+                        <form action="/action_page.php">
+                            <div class="inputfields">
+                                <input type="text" id="fname" name="fullname" placeholder="Fullname">
+
+                                <input type="text" id="email" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="messagebox">
+                                <textarea id="subject" name="subject" placeholder="Write a message.."
+                                    style="height:200px"></textarea>
+                            </div>
+                            <div class="sendbutton">
+                                <input type="submit" value="Send">
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                    <a href="/hikes"><button class="joinBtn">See all hikes</button></a>
         </div>
 
         <!-- Footer -->

@@ -227,7 +227,6 @@ h2 {
 .joinBtn {
     color: black;
     font-size: 3rem;
-    background-color: azure;
     padding: 1rem 2.5rem;
     border-radius: 8px;
 }
@@ -480,4 +479,44 @@ h1.hikeTitle {
 .pageH1 {
   padding: 0 7vw;
   margin-top: 80px
+}
+
+.registration{
+  display: flex;
+  justify-content: center;
+}
+.registration form{
+  width: 50%;
+}
+
+.inputfields{
+  display: flex;
+  justify-content: space-between;
+flex-direction: row;
+padding-bottom: 20px;
+line-height: 40px;
+    font-size: 25px;
+  }
+
+.messagebox{
+  display: flex;
+  justify-content: center;
+flex-direction: column;
+}
+
+.messagebox textarea{
+  line-height: 40px;
+  font-size: 25px;
+}
+
+.labelfield{
+  padding-bottom: 5px;
+  padding-top: 15px;
+font-size: 20px;
+}
+
+.sendbutton{
+  padding-bottom: 5px;
+  padding-top: 15px;
+    font-size: 3rem;
 }

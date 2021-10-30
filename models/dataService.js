@@ -2,7 +2,7 @@ const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
 const RegistrationEntity = require('./registrationEntity')
-const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId } = require('./db')
+const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId, dbGetRegistrations } = require('./db')
 
 
 const hikes = []
@@ -142,6 +142,12 @@ const addRegistration = (regMessage) => {
     return dbAddRegistration(regMessage)
 }
 
+const getAllRegistrations = async() => {
+    const registrations = await dbGetRegistrations()
+    console.log(registrations)
+    return registrations
+}
+
 module.exports = {
     addHike,
     addHiker,
@@ -162,5 +168,6 @@ module.exports = {
     updateHike,
     getRegistrations,
     addRegistration,
-    createRegistration
+    createRegistration,
+    getAllRegistrations
 }
