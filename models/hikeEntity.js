@@ -79,15 +79,21 @@ module.exports = class HikeEntity {
     get possibleHazards() {
         return this._possibleHazards
     }
+    set registrations(registrations) {
+        this._registrations = registrations
+    }
+    get registrations() {
+        return this._registrations
+    }
     toJSON() {
         return {
-          title: this._title,
-          description: this._description,
-          location: this._location,
-          uuid: this._uuid,
-          imageUrl: this._imageUrl,
-          date: this._date
+            title: this._title,
+            description: this._description,
+            location: this._location,
+            uuid: this._uuid,
+            imageUrl: this._imageUrl,
+            date: this._date,
+            registrations: this._registrations
         }
     }
 };
-

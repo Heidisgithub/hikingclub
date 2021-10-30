@@ -7,9 +7,9 @@ const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNe
 const hikes = []
 const hikers = []
 const news = [
-    {title:"newstitle1", content:"text", picture: "/images/hiker-g109e87bcd_1920.jpg"},
-    {title:"newstitle2", content:"text", picture: "/images/hiking-g0342fd644_1920.jpg"},
-    {title:"newstitle3", content:"text", picture: "/images/travel-g220a65d21_1920.jpg"},
+    { title: "newstitle1", content: "text", picture: "/images/hiker-g109e87bcd_1920.jpg" },
+    { title: "newstitle2", content: "text", picture: "/images/hiking-g0342fd644_1920.jpg" },
+    { title: "newstitle3", content: "text", picture: "/images/travel-g220a65d21_1920.jpg" },
 
 ]
 
@@ -96,7 +96,7 @@ const addNews = (article) => {
     news.push(article)
 }
 
-const getNews = async () => {
+const getNews = async() => {
     const news = await dbGetNews()
     return news
 }
@@ -105,6 +105,27 @@ const getNewsById = (newsId) => {
     return dbGetOneNews(newsId)
 }
 
+
+// registrations
+
+const getRegistrations = (hikeId) => {
+    return ([{
+            name: "John Doe",
+            email: "jd@wat.com",
+            message: "Hi, I'd like to apply to this hike"
+        },
+        {
+            name: "Jane Doe",
+            email: "janed@wat.com",
+            message: "Haafadsga fadsf asdf"
+        },
+        {
+            name: "Elon Musk",
+            email: "em@wat.com",
+            message: "I am an elongated musket gun"
+        },
+    ])
+}
 
 module.exports = {
     addHike,
@@ -123,5 +144,6 @@ module.exports = {
     createHike,
     getHikesIndex,
     deleteHike,
-    updateHike
+    updateHike,
+    getRegistrations
 }
