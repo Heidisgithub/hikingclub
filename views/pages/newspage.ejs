@@ -14,25 +14,21 @@
             <h1 class="headTitle">Hiking News</h1>
         </header>
 
-        <h2><strong>News</strong></h2>
-        <%for (let i=0; i < news.length && i < 3; i++) { %>
-            <!-- Hike Image  -->
-
-            <div class="newspageImages">
-                <a href="./news/<%= news[i].id%>"><img class="newsImage" src="<%= news[i].picture%>"></a>
-                <div class="newsText">
-                    <p class="newsTitle">
-                        <strong>
-                            <%= news[i].title%>
-                        </strong>
-                    </p>
-                    <p class="hikeDesc">
-                        <%= news[i].content%>
-                    </p>
-                </div>
-            </div>
-
+                    <!-- Image grid -->
+                    <h1 class="pageH1"><strong>News</strong></h1>
+                    <div class="infocardCollection">
+            <%for (let i=0; i < news.length; i++) { %>
+                
+                <%- include("../partials/card", {card: {
+                    title: news[i].title,
+                    uuid: news[i].id,
+                    imageUrl: news[i].picture,
+                    date: new Date (news[i].publishDate),
+                }, url: "./news"}) %>
             <%}%>
+        </div>
+    
+
 
 
 

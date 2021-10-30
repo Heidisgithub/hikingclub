@@ -49,6 +49,14 @@ body {
   justify-content: center;
 }
 
+.hikeslistImg {
+  background-image: url("../images/pexels-mirsad-mujanovic-691034.jpg");
+  background-size: cover;
+  height: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 
@@ -73,8 +81,17 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-
 }
+
+.hikesFootImg {
+  background-image: url("../images/pexels-krivec-ales-554609.jpg");
+  background-size: cover;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
 
 .headTitle {
   display: flex;
@@ -425,4 +442,5 @@ font-size: 50px;
 
 .pageH1 {
   padding: 0 7vw;
+  margin-top: 80px
 }
