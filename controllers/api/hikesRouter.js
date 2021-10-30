@@ -1,6 +1,6 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration } = require('../../models/dataService')
+const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations } = require('../../models/dataService')
 const hikesRouter = express.Router();
 
 
@@ -60,7 +60,6 @@ hikesRouter.post('/', async(req, res) => {
 hikesRouter.post('/:uuid/registration', (req, res) => {
 
     try {
-        addRegistration(req.params.uuid)
         res.status(201).send()
     } catch (err) {
         res.status(406).send(err)

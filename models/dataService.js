@@ -109,7 +109,6 @@ const getNewsById = (newsId) => {
 // registrations
 
 const getRegistrations = (hikeId) => {
-    // return dbGetRegistrations(hikeId)
     return ([{
             name: "John Doe",
             email: "jd@wat.com",
@@ -126,10 +125,6 @@ const getRegistrations = (hikeId) => {
             message: "I am an elongated musket gun"
         },
     ])
-}
-
-const addRegistration = (hikeId) => {
-    return dbAddRegistration(hikeId)
 }
 
 module.exports = {
@@ -150,6 +145,5 @@ module.exports = {
     getHikesIndex,
     deleteHike,
     updateHike,
-    getRegistrations,
-    addRegistration
+    getRegistrations
 }
