@@ -1,6 +1,6 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, getAllRegistrations } = require('../../models/dataService')
+const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService')
 const hikesRouter = express.Router();
 
 
@@ -10,14 +10,14 @@ hikesRouter.get('/', async(req, res) => {
     res.send(await getHikes())
 })
 
-hikesRouter.get('/registrations', async(req,res) => {
+hikesRouter.get('/registrations', async(req, res) => {
     res.send(await getAllRegistrations())
 })
 
 hikesRouter.get('/:uuid', async(req, res) => {
     const hikeData = await getHikesById(req.params.uuid)
     if (hikeData) {
-        hikeData.registrations = getRegistrations(req.params.uuid)
+        hikeData.registrations = await getRegistrations(req.params.uuid)
         console.log(hikeData)
         res.send(hikeData)
     } else {
@@ -61,13 +61,14 @@ hikesRouter.post('/', async(req, res) => {
 })
 
 
-hikesRouter.post('/:uuid/registration', (req, res) => {
-
-    try {
-        res.status(201).send()
-    } catch (err) {
-        res.status(406).send(err)
-    }
+hikesRouter.post('/:uuid/registration', async(req, res) => {
+    const newRegistration = createRegistration(req.body)
+    newRegistration.hike_uuid = req.params.uuid
+        // try {
+    res.status(201).send(await addRegistration(newRegistration))
+        // } catch (err) {
+        //     res.status(406).send(err)
+        // }
 })
 
 

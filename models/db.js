@@ -66,6 +66,17 @@ function _convertFromHikeEntity(hikeEntity) {
     return newRec
 }
 
+function _convertFromRegistrationEntity(registrationEntity) {
+    // TODO - Add other keys if we update our MVP keys for the hike entity
+    const newRec = {}
+    newRec.name = registrationEntity.name
+    newRec.email = registrationEntity.email
+    newRec.message = registrationEntity.message
+    newRec.hike_uuid = registrationEntity.hike_uuid
+    newRec.date_added = registrationEntity.date_added
+    return newRec
+}
+
 async function dbGetOneHike(uuid) {
     const hike = await db.one("SELECT * FROM hikes WHERE uuid = $1;", [uuid]);
     return _convertToHikeEntity(hike)
@@ -210,6 +221,18 @@ async function dbGetOneNews(sysId) {
     }
 }
 
+async function dbGetRegistrationsByHikeId(uuid) {
+    const registrations = await db.query("SELECT * FROM registrations WHERE hike_uuid = $1;", [uuid]);
+    return registrations
+}
+
+async function dbAddRegistration(regMessage) {
+    const newRegistration = _convertFromRegistrationEntity(regMessage)
+    console.log(newRegistration)
+    await db.one('INSERT INTO registrations(${this:name}) VALUES(${this:csv}) RETURNING id', newRegistration)
+    return true;
+}
+
 //Registrations
 async function dbGetRegistrations() {
     const registrations = await db.query(`SELECT * FROM registrations;`);
@@ -224,5 +247,7 @@ module.exports = {
     dbUpdateHike,
     dbGetNews,
     dbGetOneNews,
+    dbGetRegistrationsByHikeId,
+    dbAddRegistration,
     dbGetRegistrations
 }
