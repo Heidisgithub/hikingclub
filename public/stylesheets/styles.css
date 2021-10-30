@@ -49,9 +49,6 @@ body {
   justify-content: center;
 }
 
-
-
-
 .newspageImg {
   background-image: url("../images/trekking-g3b68dfe83_1920.jpg");
   background-size: cover;
@@ -62,18 +59,21 @@ body {
 }
 
 .newspageImg h1{
-  color: #000;}
+  color: #000;
+}
 
+.newsFootImg, .homeHikesImg {
+  background-image: url("../images/map-g12af542f7_1920.jpg");
+  background-size: cover;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-.newsFootImg {
-background-image: url("../images/map-g12af542f7_1920.jpg");
-background-size: cover;
-height: 500px;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-
+.homeHikesImg {
+  background-image: url("../images/Lookout-Mountain-Trail-1-e1531839237573.jpeg");
 }
 
 .headTitle {
@@ -116,9 +116,20 @@ h2 {
 .hikeImg {
   display: flex;
   flex-direction: row;
-  padding-bottom: 50px;
-  padding-left: 50px;
   background-size: cover;
+  width: 100%;
+  padding: 2rem 4rem;
+}
+
+.hikeImg:hover {
+  background-color: #444;
+  color: azure;
+  transition: 0.3s;
+}
+
+.hikeImgCardLink, .hikeImgCardLink:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .newspageImages {
@@ -129,7 +140,7 @@ h2 {
   padding-right: 50px;
   background-size: cover;
   width: 100%;
-position: relative;
+  position: relative;
 }
 
 .hikeImg a {
@@ -137,9 +148,11 @@ position: relative;
 }
 
 .hikeImage {
-  width: 100%;
+  width: 50%;
   height: 100%;
+  max-height: 35rem;
   object-fit: cover;
+  padding: 1rem;
 }
 
 .newsImage {
@@ -148,8 +161,7 @@ position: relative;
   object-fit: cover;
 }
 .hikeText {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 1rem;
   font-size: 30px;
   width: 50%;
 }
@@ -178,19 +190,26 @@ position: relative;
 }
 
 .joinBtn {
-  margin: 20px;
-  padding: 15px;
-  font-size: 30px;
+  color: black;
+  font-size: 3rem;
+  background-color: azure;
+  padding: 1rem 2.5rem;
   border-radius: 8px;
 }
 
+.joinBtn:hover {
+  text-decoration: none;
+  background-color: #444;
+  color: azure;
+  transition: 0.3s;
+}
+
 .moreBtn {
-    display: flex;
-    justify-content: space-around;
-    font-size: 30px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .moreBtn2 {
