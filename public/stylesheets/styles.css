@@ -59,6 +59,17 @@ body {
     justify-content: center;
 }
 
+.hikeslistImg {
+  background-image: url("../images/pexels-mirsad-mujanovic-691034.jpg");
+  background-size: cover;
+  height: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 .newspageImg {
     background-image: url("../images/trekking-g3b68dfe83_1920.jpg");
     background-size: cover;
@@ -86,6 +97,16 @@ body {
 .homeHikesImg {
     background-image: url("../images/Lookout-Mountain-Trail-1-e1531839237573.jpeg");
 }
+
+.hikesFootImg {
+  background-image: url("../images/pexels-krivec-ales-554609.jpg");
+  background-size: cover;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
 
 .headTitle {
     display: flex;
@@ -457,5 +478,6 @@ h1.hikeTitle {
 }
 
 .pageH1 {
-    padding: 0 7vw;
+  padding: 0 7vw;
+  margin-top: 80px
 }
