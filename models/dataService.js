@@ -1,7 +1,8 @@
 const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
-const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews } = require('./db')
+const RegistrationEntity = require('./registrationEntity')
+const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId } = require('./db')
 
 
 const hikes = []
@@ -60,6 +61,15 @@ const createHike = (hikeData) => {
     return newHike
 }
 
+const createRegistration = (regData) => {
+    const newRegistration = new RegistrationEntity()
+    newRegistration.name = regData.name
+    newRegistration.email = regData.email
+    newRegistration.message = regData.message
+    newRegistration.date_added = new Date()
+    return newRegistration
+}
+
 
 const addHike = async(hike) => {
     return await dbAddHike(hike)
@@ -108,23 +118,28 @@ const getNewsById = (newsId) => {
 
 // registrations
 
-const getRegistrations = (hikeId) => {
-    return ([{
-            name: "John Doe",
-            email: "jd@wat.com",
-            message: "Hi, I'd like to apply to this hike"
-        },
-        {
-            name: "Jane Doe",
-            email: "janed@wat.com",
-            message: "Haafadsga fadsf asdf"
-        },
-        {
-            name: "Elon Musk",
-            email: "em@wat.com",
-            message: "I am an elongated musket gun"
-        },
-    ])
+const getRegistrations = (hikeId, regMessage) => {
+    return dbGetRegistrationsByHikeId(hikeId, regMessage)
+        // return ([{
+        //         name: "John Doe",
+        //         email: "jd@wat.com",
+        //         message: "Hi, I'd like to apply to this hike"
+        //     },
+        //     {
+        //         name: "Jane Doe",
+        //         email: "janed@wat.com",
+        //         message: "Haafadsga fadsf asdf"
+        //     },
+        //     {
+        //         name: "Elon Musk",
+        //         email: "em@wat.com",
+        //         message: "I am an elongated musket gun"
+        //     },
+        // ])
+}
+
+const addRegistration = (regMessage) => {
+    return dbAddRegistration(regMessage)
 }
 
 module.exports = {
@@ -145,5 +160,7 @@ module.exports = {
     getHikesIndex,
     deleteHike,
     updateHike,
-    getRegistrations
+    getRegistrations,
+    addRegistration,
+    createRegistration
 }
