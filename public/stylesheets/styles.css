@@ -401,7 +401,7 @@ h1.hikeTitle {
 }
 
 .infocard {
-    max-height: 30rem;
+    height: 30rem;
     position: relative;
     width: 50%;
     overflow: hidden;
