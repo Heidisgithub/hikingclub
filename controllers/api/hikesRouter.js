@@ -79,4 +79,12 @@ hikesRouter.delete('/:uuid', async(req, res) => {
     }
 })
 
+// hikesRouter.delete('/registrations/:id', async(req,res) => {
+//     try {
+//         res.status(204).send(await deleteRegistration(req.params.id))
+//     } catch (err) {
+//         res.status(406).send(err)
+//     }
+// })
+
 module.exports = hikesRouter
