@@ -1,6 +1,6 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations } = require('../../models/dataService')
+const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, getAllRegistrations } = require('../../models/dataService')
 const hikesRouter = express.Router();
 
 
@@ -8,6 +8,10 @@ const hikesRouter = express.Router();
 
 hikesRouter.get('/', async(req, res) => {
     res.send(await getHikes())
+})
+
+hikesRouter.get('/registrations', async(req,res) => {
+    res.send(await getAllRegistrations())
 })
 
 hikesRouter.get('/:uuid', async(req, res) => {
