@@ -50,7 +50,7 @@ function _convertToHikeEntity(hikerRec) {
     newHike.location = hikerRec.location
     newHike.uuid = hikerRec.uuid
     newHike.date = hikerRec.date
-    newHike.imageUrl = hikerRec.image_url
+    newHike.imageUrl = hikerRec.image_url || 'https://via.placeholder.com/150'
     return newHike
 }
 
