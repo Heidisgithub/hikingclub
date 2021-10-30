@@ -9,6 +9,7 @@ const contentfulSpaceId = process.env.CONTENTFUL_SPACE_ID
 const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 const HikeEntity = require('./hikeEntity')
 const HikerEntity = require('./hikerEntity')
+const { documentToHtmlString } = require('@contentful/rich-text-html-renderer')
 
 const local_uri = `postgres://${username}:${password}@${host}:${port}/${database}`
 const uri = process.env.DATABASE_URL
@@ -43,7 +44,7 @@ if (process.env.DATABASE_URL) {
 
 function _convertToHikeEntity(hikerRec) {
     const newHike = new HikeEntity()
-    // TODO - Add other keys if we update our MVP keys for the hike entity
+        // TODO - Add other keys if we update our MVP keys for the hike entity
     newHike.title = hikerRec.title
     newHike.description = hikerRec.description
     newHike.location = hikerRec.location
@@ -131,7 +132,7 @@ async function dbGetNews() {
                 console.error(errors);
             }
             console.log(data.newsCollection.items)
-            // rerender the entire component with new data
+                // rerender the entire component with new data
             newsArticles = data.newsCollection.items;
         })
     let mappedNews = newsArticles.map(article => {
@@ -189,14 +190,17 @@ async function dbGetOneNews(sysId) {
                 console.error(errors);
             }
             console.log(data.news)
-            // rerender the entire component with new data
+                // rerender the entire component with new data
             newsArticle = data.news
         })
+
+    let contentHTML = documentToHtmlString(newsArticle.description.json)
+
     return {
         title: newsArticle.title,
         picture: newsArticle.picture.url,
-        publishDate: newsArticle.sys.firstPublishedAt,
-        content: newsArticle.description.json,
+        publishDate: new Date(newsArticle.sys.firstPublishedAt),
+        content: contentHTML,
         tagIds: newsArticle.contentfulMetadata.tags.map(tag => {
             return tag.id
         }),

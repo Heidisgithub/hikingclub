@@ -13,35 +13,36 @@
         <!-- News Image -->
         <header class="newsImg" style='background-image: url("<%= news.picture%>")'>
             <h1 class="newsTitle">
-                <%= news.title%>
+                <%= news.title %>
             </h1>
         </header>
 
         <div class="newsdescription">
             <h3><strong>               
-                 <%= news.publishDate%>
+                 <%= news.publishDate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %>
             </strong></h3>
         </div>
 
         <div class="tags">
-            <button class="tagBtn">Tag</button>
-            <button class="tagBtn">Tag</button>
-            <button class="tagBtn">Tag</button>
+            <%for (let i=0; i < news.tags.length; i++) { %>
+                <!-- Maybe for the future, have an API call to filter news by tags -->
+                <div className="tags">
+                    <%= news.tags[i] %>
+                </div>
+                <% } %>
         </div>
 
         <!-- News Container -->
         <div class="newsContainer">
             <h2><strong>News</strong></h2>
-            <p>
-                <script>
-                    console.log(news)
-                </script>
+            <p id="newsContent">
+                <%- news.content %>
             </p>
         </div>
 
         <!-- News Image -->
         <div class="newsFootImg">
-            <button class="joinBtn">More News</button>
+            <a href="/news"><button class="joinBtn">More News</button></a>
         </div>
 
         <!-- News Description -->
@@ -50,6 +51,7 @@
 
         <!-- Footer -->
         <%- include("../partials/footer.ejs") %>
+
 
 
 
