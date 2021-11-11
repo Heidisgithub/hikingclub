@@ -1,7 +1,7 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
 const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService');
-const { checkSession } = require('../../models/sessions');
+const { checkSession, isOperationAllowed } = require('../../models/sessions');
 const hikesRouter = express.Router();
 
 hikesRouter.use('/private', checkSession)
@@ -12,7 +12,10 @@ hikesRouter.get('/', async(req, res) => {
 })
 
 hikesRouter.get('/private/registrations', async(req, res) => {
-    res.send(await getAllRegistrations())
+    if (isOperationAllowed(req, 'admin')) {
+        return res.send(await getAllRegistrations())
+    }
+    return res.status(403).send();
 })
 
 hikesRouter.get('/:uuid', async(req, res) => {

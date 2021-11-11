@@ -3,20 +3,20 @@ const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
 const RegistrationEntity = require('./registrationEntity')
 const bcrypt = require('bcrypt')
-const { 
-    dbAddHike, 
-    dbGetHikes, 
-    dbGetOneHike, 
-    dbDeleteHike, 
-    dbUpdateHike, 
-    dbGetNews, 
-    dbGetOneNews, 
-    dbAddRegistration, 
-    dbGetRegistrationsByHikeId, 
+const {
+    dbAddHike,
+    dbGetHikes,
+    dbGetOneHike,
+    dbDeleteHike,
+    dbUpdateHike,
+    dbGetNews,
+    dbGetOneNews,
+    dbAddRegistration,
+    dbGetRegistrationsByHikeId,
     dbGetRegistrations,
     dbAddUser,
     dbGetUserByEmail
- } = require('./db')
+} = require('./db')
 
 
 const saltRounds = 10;
@@ -165,7 +165,7 @@ const getAllRegistrations = async() => {
 }
 
 const addUser = async(email, password, userName, userRole = "user") => {
-    const result = await dbGetUserByEmail(email).catch(()=>{return false})
+    const result = await dbGetUserByEmail(email).catch(() => { return false })
     if (result) {
         return false
     }
@@ -179,11 +179,11 @@ const addUser = async(email, password, userName, userRole = "user") => {
     }
     try {
         await dbAddUser(newUser)
-    } catch(err) {
+    } catch (err) {
         console.log(err.message)
         return false
     }
-    
+
     return newUser
 }
 
@@ -192,9 +192,14 @@ const verifyUser = async(email, password) => {
     if (!user) {
         return false
     }
+    console.log(user)
 
+    const isValid = bcrypt.compare(password, user.passwordHash);
 
-    return bcrypt.compare(password, user.passwordHash);
+    if (!isValid) {
+        return false
+    }
+    return user.userRole
 }
 
 

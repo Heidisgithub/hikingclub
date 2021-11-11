@@ -10,8 +10,10 @@ publicRouter
 
     })
     .post('/login', async(req, res) => {
-        if (await verifyUser(req.body.email, req.body.password)) {
-            const sessionId = generateSession(req.body.email)
+        let userRole = await verifyUser(req.body.email, req.body.password);
+        console.log(userRole)
+        if (userRole) {
+            const sessionId = generateSession(req.body.email, userRole)
             return res.status(200).send(sessionId)
 
         } else {
