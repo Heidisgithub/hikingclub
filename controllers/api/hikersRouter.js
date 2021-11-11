@@ -44,9 +44,9 @@ hikersRouter.put('/:id', (req, res) => {
 hikersRouter.delete('/:id', (req, res) => {
     const searchHikerIndex = getHikersIndex(req.params.id)
     if (searchHikerIndex !== -1) {
-      res.status(204).send(deleteHiker(searchHikerIndex))
+        res.status(204).send(deleteHiker(searchHikerIndex))
     } else {
-      res.status(404).send()
+        res.status(404).send()
     }
 })
 

@@ -3,12 +3,10 @@ const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
 const RegistrationEntity = require('./registrationEntity')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId, dbGetRegistrations } = require('./db')
 
 
 const saltRounds = 10;
-const jwtKey = "2dadafac3adaa2dasda3dadadad3adasdasd3gr4v54gsgs"
 
 const hikes = []
 const hikers = []
@@ -159,7 +157,7 @@ const getUserByAccount = (account) => {
     return users[account]
 }
 
-const addUser = async (email, password, userName) => {
+const addUser = async(email, password, userName) => {
     const result = getUserByAccount(email)
     if (result) {
         return false
@@ -175,6 +173,18 @@ const addUser = async (email, password, userName) => {
     console.log(users)
     return newUser
 }
+
+const verifyUser = async(email, password) => {
+    const user = getUserByAccount(email);
+    if (!user) {
+        return false
+    }
+
+
+    return bcrypt.compare(password, user.passwordHash);
+}
+
+
 
 module.exports = {
     addHike,
@@ -198,5 +208,6 @@ module.exports = {
     addRegistration,
     createRegistration,
     getAllRegistrations,
-    addUser
+    addUser,
+    verifyUser
 }

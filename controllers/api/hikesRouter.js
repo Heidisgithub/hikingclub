@@ -1,16 +1,17 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService')
+const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService');
+const { checkSession } = require('../../models/sessions');
 const hikesRouter = express.Router();
 
-
-//seedHikes()
+hikesRouter.use('/private', checkSession)
+    //seedHikes()
 
 hikesRouter.get('/', async(req, res) => {
     res.send(await getHikes())
 })
 
-hikesRouter.get('/registrations', async(req, res) => {
+hikesRouter.get('/private/registrations', async(req, res) => {
     res.send(await getAllRegistrations())
 })
 
@@ -26,7 +27,7 @@ hikesRouter.get('/:uuid', async(req, res) => {
 })
 
 // TODO - Modify put into patch operation
-hikesRouter.patch('/:uuid', async(req, res) => {
+hikesRouter.patch('/private/:uuid', async(req, res) => {
     try {
         res.status(200).send(
             await updateHike(req.params.uuid, req.body)
@@ -37,7 +38,7 @@ hikesRouter.patch('/:uuid', async(req, res) => {
     }
 })
 
-hikesRouter.put('/:uuid', (req, res) => {
+hikesRouter.put('/private/:uuid', (req, res) => {
     const hikeData = getHikesById(req.params.uuid)
     if (hikeData) {
         const hikeUpdates = req.body
@@ -49,7 +50,7 @@ hikesRouter.put('/:uuid', (req, res) => {
     }
 })
 
-hikesRouter.post('/', async(req, res) => {
+hikesRouter.post('/private/', async(req, res) => {
     const newHike = createHike(req.body)
     try {
         res.status(201).send(
@@ -61,7 +62,7 @@ hikesRouter.post('/', async(req, res) => {
 })
 
 
-hikesRouter.post('/:uuid/registration', async(req, res) => {
+hikesRouter.post('/private/:uuid/registration', async(req, res) => {
     const newRegistration = createRegistration(req.body)
     newRegistration.hike_uuid = req.params.uuid
         // try {
@@ -72,7 +73,7 @@ hikesRouter.post('/:uuid/registration', async(req, res) => {
 })
 
 
-hikesRouter.delete('/:uuid', async(req, res) => {
+hikesRouter.delete('/private/:uuid', async(req, res) => {
     try {
         res.status(204).send(await deleteHike(req.params.uuid))
     } catch (err) {
