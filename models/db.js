@@ -238,6 +238,28 @@ async function dbGetRegistrations() {
     const registrations = await db.query(`SELECT * FROM registrations;`);
     return registrations
 }
+//Users
+async function dbAddUser(user) {
+    const newUser = {
+        email: user.email,
+        password_hash: user.passwordHash,
+        user_name: user.userName,
+        user_role: user.userRole
+    }
+    await db.one('INSERT INTO users(${this:name}) VALUES(${this:csv}) RETURNING id', newUser)
+    return true;
+}
+
+async function dbGetUserByEmail(email) {
+    const user = await db.one(`SELECT * FROM users WHERE email = $1;`, [email]);
+    const newUser = {
+        email: user.email,
+        passwordHash: user.password_hash,
+        userName: user.user_name,
+        userRole: user.user_role
+    }
+    return newUser
+}
 
 module.exports = {
     dbAddHike,
@@ -249,5 +271,7 @@ module.exports = {
     dbGetOneNews,
     dbGetRegistrationsByHikeId,
     dbAddRegistration,
-    dbGetRegistrations
+    dbGetRegistrations,
+    dbAddUser,
+    dbGetUserByEmail
 }

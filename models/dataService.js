@@ -3,7 +3,20 @@ const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
 const RegistrationEntity = require('./registrationEntity')
 const bcrypt = require('bcrypt')
-const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId, dbGetRegistrations } = require('./db')
+const { 
+    dbAddHike, 
+    dbGetHikes, 
+    dbGetOneHike, 
+    dbDeleteHike, 
+    dbUpdateHike, 
+    dbGetNews, 
+    dbGetOneNews, 
+    dbAddRegistration, 
+    dbGetRegistrationsByHikeId, 
+    dbGetRegistrations,
+    dbAddUser,
+    dbGetUserByEmail
+ } = require('./db')
 
 
 const saltRounds = 10;
@@ -151,14 +164,8 @@ const getAllRegistrations = async() => {
     return registrations
 }
 
-const users = {}
-
-const getUserByAccount = (account) => {
-    return users[account]
-}
-
-const addUser = async(email, password, userName) => {
-    const result = getUserByAccount(email)
+const addUser = async(email, password, userName, userRole = "user") => {
+    const result = await dbGetUserByEmail(email).catch(()=>{return false})
     if (result) {
         return false
     }
@@ -167,15 +174,21 @@ const addUser = async(email, password, userName) => {
     const newUser = {
         email: email,
         userName: userName,
-        passwordHash: passwordHash
+        passwordHash: passwordHash,
+        userRole: userRole
     }
-    users[email] = newUser
-    console.log(users)
+    try {
+        await dbAddUser(newUser)
+    } catch(err) {
+        console.log(err.message)
+        return false
+    }
+    
     return newUser
 }
 
 const verifyUser = async(email, password) => {
-    const user = getUserByAccount(email);
+    const user = await dbGetUserByEmail(email);
     if (!user) {
         return false
     }
