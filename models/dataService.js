@@ -2,8 +2,13 @@ const HikeEntity = require('./hikeEntity')
 const NewsEntity = require('./newsEntity')
 const HikerEntity = require('./hikerEntity')
 const RegistrationEntity = require('./registrationEntity')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const { dbAddHike, dbGetHikes, dbGetOneHike, dbDeleteHike, dbUpdateHike, dbGetNews, dbGetOneNews, dbAddRegistration, dbGetRegistrationsByHikeId, dbGetRegistrations } = require('./db')
 
+
+const saltRounds = 10;
+const jwtKey = "2dadafac3adaa2dasda3dadadad3adasdasd3gr4v54gsgs"
 
 const hikes = []
 const hikers = []
@@ -148,6 +153,29 @@ const getAllRegistrations = async() => {
     return registrations
 }
 
+const users = {}
+
+const getUserByAccount = (account) => {
+    return users[account]
+}
+
+const addUser = async (email, password, userName) => {
+    const result = getUserByAccount(email)
+    if (result) {
+        return false
+    }
+    const salt = await bcrypt.genSalt(saltRounds)
+    const passwordHash = await bcrypt.hash(password, salt)
+    const newUser = {
+        email: email,
+        userName: userName,
+        passwordHash: passwordHash
+    }
+    users[email] = newUser
+    console.log(users)
+    return newUser
+}
+
 module.exports = {
     addHike,
     addHiker,
@@ -169,5 +197,6 @@ module.exports = {
     getRegistrations,
     addRegistration,
     createRegistration,
-    getAllRegistrations
+    getAllRegistrations,
+    addUser
 }

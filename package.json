@@ -14,10 +14,12 @@
     "@contentful/rich-text-html-renderer": "^15.5.1",
     "@contentful/rich-text-react-renderer": "^15.5.1",
     "@contentful/rich-text-types": "^15.5.1",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.5",
     "express": "^4.15.2",
+    "jsonwebtoken": "^8.5.1",
     "node-fetch": "2.0.0",
     "pg-promise": "^10.11.0",
     "uuid": "^8.3.2"
