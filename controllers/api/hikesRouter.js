@@ -1,6 +1,19 @@
 const express = require('express');
 const { seedHikes } = require('../../utils/helper')
-const { deleteHike, getHikesIndex, addHike, createHike, getHikesById, getHikes, updateHike, getRegistrations, addRegistration, createRegistration, getAllRegistrations } = require('../../models/dataService');
+const { 
+    deleteHike, 
+    getHikesIndex, 
+    addHike, 
+    createHike, 
+    getHikesById, 
+    getHikes, 
+    updateHike, 
+    getRegistrations, 
+    addRegistration, 
+    deleteRegistration, 
+    createRegistration, 
+    getAllRegistrations 
+} = require('../../models/dataService');
 const { checkSession, checkAdmin } = require('../../models/sessions');
 const hikesRouter = express.Router();
 
@@ -19,7 +32,6 @@ hikesRouter.get('/:uuid', async(req, res) => {
     const hikeData = await getHikesById(req.params.uuid)
     if (hikeData) {
         hikeData.registrations = await getRegistrations(req.params.uuid)
-        console.log(hikeData)
         res.send(hikeData)
     } else {
         res.status(404).send()
@@ -81,12 +93,12 @@ hikesRouter.delete('/private/:uuid', async(req, res) => {
     }
 })
 
-// hikesRouter.delete('/registrations/:id', async(req,res) => {
-//     try {
-//         res.status(204).send(await deleteRegistration(req.params.id))
-//     } catch (err) {
-//         res.status(406).send(err)
-//     }
-// })
+hikesRouter.delete('/private/registrations/:id', checkAdmin, async(req,res) => {
+    try {
+        res.status(204).send(await deleteRegistration(req.params.id))
+    } catch (err) {
+        res.status(406).send(err)
+    }
+})
 
 module.exports = hikesRouter

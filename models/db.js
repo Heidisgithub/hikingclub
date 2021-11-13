@@ -227,9 +227,7 @@ async function dbGetRegistrationsByHikeId(uuid) {
 }
 
 async function dbAddRegistration(regMessage) {
-    console.log(regMessage)
     const newRegistration = _convertFromRegistrationEntity(regMessage);
-    console.log(newRegistration)
 
     if (newRegistration.name && newRegistration.email && newRegistration.message) {
         await db.one('INSERT INTO registrations(${this:name}) VALUES(${this:csv}) RETURNING id', newRegistration)
@@ -252,6 +250,11 @@ async function dbGetRegistrations() {
     }
     return registrations
 }
+async function dbDeleteRegistration(id) {
+    await db.query("DELETE FROM registrations WHERE id = $1", [id]);
+    return true;
+}
+
 //Users
 async function dbAddUser(user) {
     const newUser = {
@@ -292,5 +295,6 @@ module.exports = {
     dbAddRegistration,
     dbGetRegistrations,
     dbAddUser,
-    dbGetUserByEmail
+    dbGetUserByEmail,
+    dbDeleteRegistration
 }
