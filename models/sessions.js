@@ -16,9 +16,17 @@ const checkSession = (req, res, next) => {
     }
 }
 
+const checkAdmin = (req, res, next) => {
+    const isAdmin = isOperationAllowed(req, 'admin')
+    if (isAdmin) {
+        next()
+    } else {
+        res.status(400).send({ error: "User has to be an admin" })
+    }
+
+}
+
 const isOperationAllowed = (req, roleToCheckAgainst) => {
-    console.log(req)
-    console.log(roleToCheckAgainst)
     return req.userRole === roleToCheckAgainst
 }
 
@@ -56,5 +64,5 @@ const getPayloadFromToken = (token) => {
 module.exports = {
     generateSession,
     checkSession,
-    isOperationAllowed
+    checkAdmin
 }
