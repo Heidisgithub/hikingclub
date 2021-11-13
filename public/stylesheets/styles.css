@@ -225,7 +225,7 @@ h2 {
 }
 
 .joinBtn {
-    color: black;
+    color: white;
     font-size: 3rem;
     padding: 1rem 2.5rem;
     border-radius: 8px;
@@ -234,7 +234,7 @@ h2 {
 .joinBtn:hover {
     text-decoration: none;
     background-color: #444;
-    color: azure;
+    color: white;
     transition: 0.3s;
 }
 
@@ -270,6 +270,7 @@ h2 {
 
 .footerLinks a {
     color: #fff;
+    font-size: 20px;
 }
 
 .footerLinks li:first-child {
@@ -460,6 +461,7 @@ h1.hikeTitle {
     left: 5%;
     color: #fff;
     z-index: 2;
+    font-size: 30px;
 }
 
 .infocardImage {
@@ -519,4 +521,11 @@ font-size: 20px;
   padding-bottom: 5px;
   padding-top: 15px;
     font-size: 3rem;
+}
+
+.imprint{
+    padding: 0 7vw;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
 }

@@ -30,6 +30,7 @@ publicRouter
     .get('/hikes/:id', async(req, res) => {
         res.render('pages/hikePage', { hike: await getHikesById(req.params.id) })
     })
+    .get('/imprint', (req, res) => res.render('pages/imprint'))
 
 .post('/userapi/hikers', (req, res) => res.status(400).send("not implemented yet"))
     .put('/userapi/hikers/:id', (req, res) => res.status(400).send("not implemented yet"))
