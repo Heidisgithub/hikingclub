@@ -235,7 +235,15 @@ async function dbAddRegistration(regMessage) {
 
 //Registrations
 async function dbGetRegistrations() {
-    const registrations = await db.query(`SELECT * FROM registrations;`);
+    const registrations = await db.query(`
+        SELECT a.title hike_title, b.id, b.name, b.email, b.message, b.date_added, b.hike_uuid
+        FROM registrations AS b
+        LEFT JOIN hikes AS a
+        ON a.uuid = b.hike_uuid;
+    `).catch(()=>{return false})
+    if (!registrations) {
+        return false
+    }
     return registrations
 }
 //Users
