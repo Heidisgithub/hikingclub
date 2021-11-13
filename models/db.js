@@ -240,7 +240,16 @@ async function dbAddRegistration(regMessage) {
 
 //Registrations
 async function dbGetRegistrations() {
-    const registrations = await db.query(`SELECT * FROM registrations;`);
+    const registrations = await db.query(`
+        SELECT a.title hike_title, b.id, b.name, b.email, b.message, b.date_added, b.hike_uuid
+        FROM registrations AS b
+        LEFT JOIN hikes AS a
+        ON a.uuid = b.hike_uuid
+        ORDER BY date_added DESC;
+    `).catch(()=>{return false})
+    if (!registrations) {
+        return false
+    }
     return registrations
 }
 //Users
@@ -256,7 +265,12 @@ async function dbAddUser(user) {
 }
 
 async function dbGetUserByEmail(email) {
-    const user = await db.one(`SELECT * FROM users WHERE email = $1;`, [email]);
+    const user = await db.one(`SELECT * FROM users WHERE email = $1;`, [email]).catch(()=>{
+        return false
+    });
+    if (!user) {
+        return false
+    }
     const newUser = {
         email: user.email,
         passwordHash: user.password_hash,
