@@ -239,7 +239,8 @@ async function dbGetRegistrations() {
         SELECT a.title hike_title, b.id, b.name, b.email, b.message, b.date_added, b.hike_uuid
         FROM registrations AS b
         LEFT JOIN hikes AS a
-        ON a.uuid = b.hike_uuid;
+        ON a.uuid = b.hike_uuid
+        ORDER BY date_added DESC;
     `).catch(()=>{return false})
     if (!registrations) {
         return false
