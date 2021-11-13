@@ -62,14 +62,14 @@ hikesRouter.post('/private/', async(req, res) => {
 })
 
 
-hikesRouter.post('/private/:uuid/registration', async(req, res) => {
+hikesRouter.post('/:uuid/registration', async(req, res) => {
     const newRegistration = createRegistration(req.body)
     newRegistration.hike_uuid = req.params.uuid
-        // try {
-    res.status(201).send(await addRegistration(newRegistration))
-        // } catch (err) {
-        //     res.status(406).send(err)
-        // }
+    try {
+        res.status(201).send(await addRegistration(newRegistration))
+    } catch (err) {
+        res.status(406).send(err)
+    }
 })
 
 
