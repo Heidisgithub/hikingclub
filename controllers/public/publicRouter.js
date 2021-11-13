@@ -14,7 +14,7 @@ publicRouter
         console.log(userRole)
         if (userRole) {
             const sessionId = generateSession(req.body.email, userRole)
-            return res.status(200).send(sessionId)
+            return res.status(200).send({sessionId})
 
         } else {
             res.status(400).send({ error: "Wrong username or password" })

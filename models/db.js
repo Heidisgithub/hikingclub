@@ -251,7 +251,12 @@ async function dbAddUser(user) {
 }
 
 async function dbGetUserByEmail(email) {
-    const user = await db.one(`SELECT * FROM users WHERE email = $1;`, [email]);
+    const user = await db.one(`SELECT * FROM users WHERE email = $1;`, [email]).catch(()=>{
+        return false
+    });
+    if (!user) {
+        return false
+    }
     const newUser = {
         email: user.email,
         passwordHash: user.password_hash,
