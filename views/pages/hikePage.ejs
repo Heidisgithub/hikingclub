@@ -85,21 +85,24 @@
 
                     <h2>Registration</h2>
                     <div class="registration">
-                        <form action="/action_page.php">
+                        <div id="registrationForm">
                             <div class="inputfields">
-                                <input type="text" id="fname" name="fullname" placeholder="Fullname">
+                                <input type="text" required id="name" name="name" placeholder="full name">
 
-                                <input type="text" id="email" name="email" placeholder="Email">
+                                <input type="text" required id="email" name="email" placeholder="Email">
                             </div>
 
                             <div class="messagebox">
-                                <textarea id="subject" name="subject" placeholder="Write a message.."
-                                    style="height:200px"></textarea>
+                                <textarea id="message" name="message" placeholder="Write a message.." style="height:200px"></textarea>
+                            </div>
+                            <div style="display: flex">
+                                <input type="checkbox" required name="privacyPolicyCheckbox" id="privacyPolicyCheckbox">
+                                <label for="privacyPolicyCheckbox" name="privacyPolicyCheckbox">I have read and understood the <a href="/data-protection">data protection terms</a> and would like to apply for this hike</label>
                             </div>
                             <div class="sendbutton">
-                                <input type="submit" value="Send">
+                                <button onclick="submitRegistration('<%= hike.uuid %>');"> Send </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
 
@@ -109,9 +112,7 @@
 
         <!-- Footer -->
         <%- include("../partials/footer.ejs") %>
-
-
-
+            <script src="/registration.js"></script>
 </body>
 
 </html>

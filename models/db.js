@@ -227,10 +227,15 @@ async function dbGetRegistrationsByHikeId(uuid) {
 }
 
 async function dbAddRegistration(regMessage) {
-    const newRegistration = _convertFromRegistrationEntity(regMessage)
+    console.log(regMessage)
+    const newRegistration = _convertFromRegistrationEntity(regMessage);
     console.log(newRegistration)
-    await db.one('INSERT INTO registrations(${this:name}) VALUES(${this:csv}) RETURNING id', newRegistration)
-    return true;
+
+    if (newRegistration.name && newRegistration.email && newRegistration.message) {
+        await db.one('INSERT INTO registrations(${this:name}) VALUES(${this:csv}) RETURNING id', newRegistration)
+        return true;
+    }
+    return false
 }
 
 //Registrations
