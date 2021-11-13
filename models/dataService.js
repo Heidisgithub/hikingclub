@@ -15,7 +15,8 @@ const {
     dbGetRegistrationsByHikeId,
     dbGetRegistrations,
     dbAddUser,
-    dbGetUserByEmail
+    dbGetUserByEmail,
+    dbDeleteRegistration
 } = require('./db')
 
 
@@ -94,14 +95,10 @@ const addHike = async(hike) => {
 const getHikes = async() => {
     const hikes = await dbGetHikes()
     return hikes
-        // //return hikes.map(hike => {
-        //     return makePublicHike(hike)
-        // })
 }
 
 const getHikesById = (hikeId) => {
     return dbGetOneHike(hikeId)
-        // return hikes.find(hike => hike._uuid === hikeId)
 }
 
 const getHikesIndex = (hikeId) => {
@@ -136,22 +133,6 @@ const getNewsById = (newsId) => {
 
 const getRegistrations = (hikeId, regMessage) => {
     return dbGetRegistrationsByHikeId(hikeId, regMessage)
-        // return ([{
-        //         name: "John Doe",
-        //         email: "jd@wat.com",
-        //         message: "Hi, I'd like to apply to this hike"
-        //     },
-        //     {
-        //         name: "Jane Doe",
-        //         email: "janed@wat.com",
-        //         message: "Haafadsga fadsf asdf"
-        //     },
-        //     {
-        //         name: "Elon Musk",
-        //         email: "em@wat.com",
-        //         message: "I am an elongated musket gun"
-        //     },
-        // ])
 }
 
 const addRegistration = (regMessage) => {
@@ -163,6 +144,11 @@ const getAllRegistrations = async() => {
     console.log(registrations)
     return registrations
 }
+
+const deleteRegistration = async (id) => {
+    await dbDeleteRegistration(id)
+}
+
 
 const addUser = async(email, password, userName, userRole = "user") => {
     const result = await dbGetUserByEmail(email).catch(() => { return false })
@@ -227,5 +213,6 @@ module.exports = {
     createRegistration,
     getAllRegistrations,
     addUser,
-    verifyUser
+    verifyUser,
+    deleteRegistration
 }
