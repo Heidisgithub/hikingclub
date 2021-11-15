@@ -17,14 +17,14 @@ const {
 const { checkSession, checkAdmin } = require('../../models/sessions');
 const hikesRouter = express.Router();
 
-hikesRouter.use('/private', checkSession)
-    //seedHikes()
+hikesRouter.use('/', checkSession)
+hikesRouter.use('/', checkAdmin)
 
 hikesRouter.get('/', async(req, res) => {
     res.send(await getHikes())
 })
 
-hikesRouter.get('/private/registrations', checkAdmin, async(req, res) => {
+hikesRouter.get('/registrations', async(req, res) => {
     return res.send(await getAllRegistrations())
 })
 
@@ -39,7 +39,7 @@ hikesRouter.get('/:uuid', async(req, res) => {
 })
 
 // TODO - Modify put into patch operation
-hikesRouter.patch('/private/:uuid', async(req, res) => {
+hikesRouter.patch('/:uuid', async(req, res) => {
     try {
         res.status(200).send(
             await updateHike(req.params.uuid, req.body)
@@ -50,7 +50,7 @@ hikesRouter.patch('/private/:uuid', async(req, res) => {
     }
 })
 
-hikesRouter.put('/private/:uuid', (req, res) => {
+hikesRouter.put('/:uuid', (req, res) => {
     const hikeData = getHikesById(req.params.uuid)
     if (hikeData) {
         const hikeUpdates = req.body
@@ -62,7 +62,7 @@ hikesRouter.put('/private/:uuid', (req, res) => {
     }
 })
 
-hikesRouter.post('/private/', async(req, res) => {
+hikesRouter.post('/', async(req, res) => {
     const newHike = createHike(req.body)
     try {
         res.status(201).send(
@@ -85,7 +85,7 @@ hikesRouter.post('/:uuid/registration', async(req, res) => {
 })
 
 
-hikesRouter.delete('/private/:uuid', async(req, res) => {
+hikesRouter.delete('/:uuid', async(req, res) => {
     try {
         res.status(204).send(await deleteHike(req.params.uuid))
     } catch (err) {
@@ -93,7 +93,7 @@ hikesRouter.delete('/private/:uuid', async(req, res) => {
     }
 })
 
-hikesRouter.delete('/private/registrations/:id', checkAdmin, async(req,res) => {
+hikesRouter.delete('/registrations/:id', async(req,res) => {
     try {
         res.status(204).send(await deleteRegistration(req.params.id))
     } catch (err) {
