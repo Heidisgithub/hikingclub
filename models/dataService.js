@@ -145,7 +145,7 @@ const getAllRegistrations = async() => {
     return registrations
 }
 
-const deleteRegistration = async (id) => {
+const deleteRegistration = async(id) => {
     await dbDeleteRegistration(id)
 }
 
@@ -180,7 +180,7 @@ const verifyUser = async(email, password) => {
     }
     console.log(user)
 
-    const isValid = bcrypt.compare(password, user.passwordHash);
+    const isValid = await bcrypt.compare(password, user.passwordHash);
 
     if (!isValid) {
         return false

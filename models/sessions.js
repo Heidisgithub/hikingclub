@@ -33,7 +33,7 @@ const isOperationAllowed = (req, roleToCheckAgainst) => {
 const generateSession = (email, userRole) => {
 
     const token = jwt.sign({ email, userRole }, jwtKey, { expiresIn: '1h' })
-    return token
+    return { token, userRole }
 }
 
 

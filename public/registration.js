@@ -14,7 +14,7 @@
      console.log(checkbox)
 
      if (checkbox) {
-         const url = `/api/hikes/${hike_uuid}/registration`;
+         const url = `/publicapi/hikes/${hike_uuid}/registration`;
          let jsonResponse
          const postingRegistration = {
              method: 'POST',

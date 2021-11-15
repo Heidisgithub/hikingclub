@@ -1,6 +1,6 @@
 const express = require('express');
 const publicRouter = express.Router();
-const { getHikes, getHikesById, getNews, getNewsById, addUser, verifyUser } = require('../../models/dataService')
+const { getHikes, getHikesById, getNews, getNewsById, addUser, verifyUser, createRegistration, addRegistration } = require('../../models/dataService')
 const { generateSession } = require('../../models/sessions')
 
 
@@ -13,8 +13,8 @@ publicRouter
         let userRole = await verifyUser(req.body.email, req.body.password);
         console.log(userRole)
         if (userRole) {
-            const sessionId = generateSession(req.body.email, userRole)
-            return res.status(200).send({sessionId})
+            const sessionData = generateSession(req.body.email, userRole)
+            return res.status(200).send({ sessionId: sessionData.token, userRole: sessionData.userRole })
 
         } else {
             res.status(400).send({ error: "Wrong username or password" })
@@ -30,7 +30,18 @@ publicRouter
     .get('/hikes/:id', async(req, res) => {
         res.render('pages/hikePage', { hike: await getHikesById(req.params.id) })
     })
-    .get('/imprint', (req, res) => res.render('pages/imprint'))
+
+.post('/publicapi/hikes/:uuid/registration', async(req, res) => {
+    const newRegistration = createRegistration(req.body)
+    newRegistration.hike_uuid = req.params.uuid
+    try {
+        res.status(201).send(await addRegistration(newRegistration))
+    } catch (err) {
+        res.status(406).send(err)
+    }
+})
+
+.get('/imprint', (req, res) => res.render('pages/imprint'))
 
 .post('/userapi/hikers', (req, res) => res.status(400).send("not implemented yet"))
     .put('/userapi/hikers/:id', (req, res) => res.status(400).send("not implemented yet"))
