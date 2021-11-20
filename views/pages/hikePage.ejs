@@ -96,11 +96,12 @@
                             </div>
                             <div style="display: flex">
                                 <input type="checkbox" required name="privacyPolicyCheckbox" id="privacyPolicyCheckbox">
-                                <label for="privacyPolicyCheckbox" name="privacyPolicyCheckbox">I have read and understood the <a href="/data-protection">data protection terms</a> and would like to apply for this hike</label>
+                                <label for="privacyPolicyCheckbox" name="privacyPolicyCheckbox">I have read and understood the <a href="/imprint">data protection terms</a> and would like to apply for this hike</label>
                             </div>
                             <div class="sendbutton">
                                 <button onclick="submitRegistration('<%= hike.uuid %>');"> Send </button>
                             </div>
+                            <div id="error" class="errorMessage"></div>
                         </div>
                     </div>
 

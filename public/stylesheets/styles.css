@@ -13,6 +13,7 @@ nav ul {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
 }
 
 .navbar {
@@ -21,7 +22,7 @@ body {
 
 .container {
     display: inline-block;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 
@@ -110,20 +111,33 @@ body {
     display: flex;
     justify-content: center;
     color: rgb(255, 255, 255);
-    font-size: 150px;
+    text-shadow: 1px 1px black;
+    font-size: 15rem;
 }
 
 .newsTitle {
     display: flex;
     justify-content: center;
     color: rgb(255, 255, 255);
-    font-size: 150px;
+    text-shadow: 1px 1px black;
+    font-size: 12rem;
+    text-align: center;
+}
+
+.registrationFormSuccess {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #4bb543;
+}
+
+.errorMessage {
+    color: #f00
 }
 
 .newsContainer {
     padding-left: 50px;
     padding-bottom: 50px;
-    font-size: 40px;
+    /* font-size: 40px; */
     background-color: rgb(224, 222, 222);
 }
 
@@ -141,7 +155,7 @@ h2 {
     padding-left: 50px;
     padding-top: 100px;
     padding-bottom: 50px;
-    font-size: 50px;
+    /* font-size: 50px; */
 }
 
 .hikeImg {
@@ -195,7 +209,7 @@ h2 {
 
 .hikeText {
     padding: 1rem;
-    font-size: 30px;
+    /* font-size: 30px; */
     width: 50%;
 }
 
@@ -203,7 +217,7 @@ h2 {
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 50px;
-    font-size: 30px;
+    /* font-size: 30px; */
     width: 50%;
 }
 
@@ -219,14 +233,14 @@ h2 {
 
 .subTitle {
     color: white;
-    font-size: 50px;
+    font-size: 5rem;
     text-shadow: 1px 1px black;
 }
 
 .joinBtn {
     color: white;
     background-color: #444;
-    font-size: 3rem;
+    /* font-size: 3rem; */
     padding: 1rem 2.5rem;
     border-radius: 8px;
     transition: 0.3s;
@@ -242,7 +256,7 @@ h2 {
 .moreBtn {
     display: flex;
     justify-content: space-around;
-    font-size: 30px;
+    /* font-size: 30px; */
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -255,7 +269,7 @@ h2 {
 .tags {
     display: flex;
     justify-content: space-around;
-    font-size: 30px;
+    /* font-size: 30px; */
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -271,7 +285,7 @@ h2 {
 
 .footerLinks a {
     color: #fff;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .footerLinks li:first-child {
@@ -299,13 +313,6 @@ h1.hikeTitle {
     bottom: 5%;
     color: #fff;
     left: 7vw;
-}
-
-.newsTitle {
-    position: absolute;
-    z-index: 2;
-    bottom: 20%;
-    font-size: 50px;
 }
 
 .headerImage {
@@ -360,18 +367,9 @@ h1.hikeTitle {
     background-color: #edeeed;
 }
 
-@media (min-width: 754px) {
-    header {
-        height: calc(100vh - 50px);
-        overflow: hidden;
-    }
-}
-
-@media (max-width: 754px) {
-    header {
-        height: calc(100vh - 183.5px);
-        overflow: hidden;
-    }
+header {
+    height: calc(100vh - 62px);
+    overflow: hidden;
 }
 
 .headerGradient,
@@ -462,7 +460,7 @@ h1.hikeTitle {
     left: 5%;
     color: #fff;
     z-index: 2;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .infocardImage {
@@ -499,7 +497,7 @@ h1.hikeTitle {
     flex-direction: row;
     padding-bottom: 20px;
     line-height: 40px;
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 .messagebox {
@@ -510,24 +508,24 @@ h1.hikeTitle {
 
 .messagebox textarea {
     line-height: 40px;
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 .labelfield {
     padding-bottom: 5px;
     padding-top: 15px;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .sendbutton {
     padding-bottom: 5px;
     padding-top: 15px;
-    font-size: 3rem;
+    /* font-size: 3rem; */
 }
 
 .imprint {
     padding: 0 7vw;
     margin-top: 50px;
     margin-bottom: 50px;
-    font-size: 25px;
+    /* font-size: 25px; */
 }

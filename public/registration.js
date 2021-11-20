@@ -12,8 +12,13 @@
      }
 
      console.log(checkbox)
+     if (!name || !email) {
+         document.getElementById('error').innerText = "Please insert a name and an email"
+         return;
+     }
 
      if (checkbox) {
+
          const url = `/publicapi/hikes/${hike_uuid}/registration`;
          let jsonResponse
          const postingRegistration = {
@@ -26,6 +31,8 @@
              console.log(response)
              document.getElementById('registrationForm').innerHTML = "<div class='registrationFormSuccess'>Thank you for participating in this hike!</div>"
          }
+     } else {
+         document.getElementById('error').innerText = "Please agree to our data protection terms"
      }
      console.log(registrationData)
  }
