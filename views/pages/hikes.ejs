@@ -18,20 +18,20 @@
         <%for (let i=0; i < hikes.length && i < 3; i++) { %>
             <!-- Hike Image  -->
             <a href="./hikes/<%= hikes[i].uuid%>" class="hikeImgCardLink">
-            <div class="hikeImg">
-                <img class="hikeImage" src="<%= hikes[i].imageUrl%>">
-                <div class="hikeText">
-                    <p class="hikeTitle"><strong>
+                <div class="hikeImg">
+                    <img class="hikeImage" src="<%= hikes[i].imageUrl%>">
+                    <div class="hikeText">
+                        <p class="hikeTitle"><strong>
                             <%= hikes[i].title%>
                         </strong></p>
-                    <p class="hikeLoca">
-                        <%= hikes[i].location%>
-                    </p>
-                    <p class="hikeDesc">
-                        <%= hikes[i].description%>
-                    </p>
+                        <p class="hikeLoca">
+                            <%= hikes[i].location%>
+                        </p>
+                        <p class="hikeDesc">
+                            <%= hikes[i].description%>
+                        </p>
+                    </div>
                 </div>
-            </div>
             </a>
             <%}%>
 
@@ -39,12 +39,6 @@
                 <div class="homeHikesImg">
                     <h4 class="subTitle">Check out all our hikes</h4>
                     <a class="joinBtn" href="/hikes">See hikes</a>
-                </div>
-
-                <!-- separator image -->
-                <div class="sepImg">
-                    <h4 class="subTitle">Let's hike together</h4>
-                    <a class="joinBtn" href="/register">Join us</a>
                 </div>
 
                 <!-- News image -->

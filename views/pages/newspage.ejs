@@ -14,34 +14,34 @@
             <h1 class="headTitle">Hiking News</h1>
         </header>
 
-                    <!-- Image grid -->
-                    <h1 class="pageH1"><strong>News</strong></h1>
-                    <div class="infocardCollection">
+        <!-- Image grid -->
+        <h1 class="pageH1"><strong>News</strong></h1>
+        <div class="infocardCollection">
             <%for (let i=0; i < news.length; i++) { %>
-                
+
                 <%- include("../partials/card", {card: {
                     title: news[i].title,
                     uuid: news[i].id,
                     imageUrl: news[i].picture,
                     date: new Date (news[i].publishDate),
                 }, url: "./news"}) %>
-            <%}%>
+                    <%}%>
         </div>
-    
 
 
 
 
-                <!-- News image -->
-                <div class="newsFootImg">
-                    <a class="joinBtn" href="/">Read more</a>
-                </div>
+
+        <!-- News image -->
+        <div class="newsFootImg">
+            <a class="joinBtn" href="/">Back to home</a>
+        </div>
 
 
 
 
-                <!-- Footer -->
-                <%- include("../partials/footer.ejs") %>
+        <!-- Footer -->
+        <%- include("../partials/footer.ejs") %>
 
 
 

@@ -60,15 +60,13 @@ body {
 }
 
 .hikeslistImg {
-  background-image: url("../images/pexels-mirsad-mujanovic-691034.jpg");
-  background-size: cover;
-  height: 1100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-image: url("../images/pexels-mirsad-mujanovic-691034.jpg");
+    background-size: cover;
+    height: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-
 
 .newspageImg {
     background-image: url("../images/trekking-g3b68dfe83_1920.jpg");
@@ -99,14 +97,14 @@ body {
 }
 
 .hikesFootImg {
-  background-image: url("../images/pexels-krivec-ales-554609.jpg");
-  background-size: cover;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  }
+    background-image: url("../images/pexels-krivec-ales-554609.jpg");
+    background-size: cover;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .headTitle {
     display: flex;
@@ -222,19 +220,22 @@ h2 {
 .subTitle {
     color: white;
     font-size: 50px;
+    text-shadow: 1px 1px black;
 }
 
 .joinBtn {
     color: white;
+    background-color: #444;
     font-size: 3rem;
     padding: 1rem 2.5rem;
     border-radius: 8px;
+    transition: 0.3s;
 }
 
 .joinBtn:hover {
     text-decoration: none;
-    background-color: #444;
-    color: white;
+    background-color: white;
+    color: #444;
     transition: 0.3s;
 }
 
@@ -479,51 +480,52 @@ h1.hikeTitle {
 }
 
 .pageH1 {
-  padding: 0 7vw;
-  margin-top: 80px
+    padding: 0 7vw;
+    margin-top: 80px
 }
 
-.registration{
-  display: flex;
-  justify-content: center;
-}
-.registration form{
-  width: 50%;
+.registration {
+    display: flex;
+    justify-content: center;
 }
 
-.inputfields{
-  display: flex;
-  justify-content: space-between;
-flex-direction: row;
-padding-bottom: 20px;
-line-height: 40px;
+.registration form {
+    width: 50%;
+}
+
+.inputfields {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-bottom: 20px;
+    line-height: 40px;
     font-size: 25px;
-  }
-
-.messagebox{
-  display: flex;
-  justify-content: center;
-flex-direction: column;
 }
 
-.messagebox textarea{
-  line-height: 40px;
-  font-size: 25px;
+.messagebox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.labelfield{
-  padding-bottom: 5px;
-  padding-top: 15px;
-font-size: 20px;
+.messagebox textarea {
+    line-height: 40px;
+    font-size: 25px;
 }
 
-.sendbutton{
-  padding-bottom: 5px;
-  padding-top: 15px;
+.labelfield {
+    padding-bottom: 5px;
+    padding-top: 15px;
+    font-size: 20px;
+}
+
+.sendbutton {
+    padding-bottom: 5px;
+    padding-top: 15px;
     font-size: 3rem;
 }
 
-.imprint{
+.imprint {
     padding: 0 7vw;
     margin-top: 50px;
     margin-bottom: 50px;
